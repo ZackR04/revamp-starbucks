@@ -29,7 +29,6 @@ class DetailProductScreen extends StatelessWidget {
                       text: 'Add To Cart',
                       isLoading: (addToCartState is AddToCartIsLoading),
                       onPressed: () {
-                        print('BENERAN INI KAN');
                         BlocProvider.of<AddToCartBloc>(context).add(AddToCart(
                             //untuk data
                             state.data,
