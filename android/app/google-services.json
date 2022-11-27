@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "156922778313",
+    "project_id": "starbucks-4d36f",
+    "storage_bucket": "starbucks-4d36f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156922778313:android:d111870db7b1945e70f318",
+        "android_client_info": {
+          "package_name": "com.starbucks_revamp.starbucks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156922778313-2sbkcav3jk6p6hs574qhoep3gtgqi1g6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeSvPoCmNc7qBnA3dIMZpPsINwEF-gw4Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156922778313-2sbkcav3jk6p6hs574qhoep3gtgqi1g6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
