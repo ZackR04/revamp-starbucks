@@ -26,7 +26,7 @@ class UserView extends StatelessWidget {
                       IconButton(
                         onPressed: () {},
                         color: colorName.white,
-                        icon: Icon(Icons.photo_camera).onTap(() {
+                        icon: const Icon(Icons.photo_camera).onTap(() {
                           BlocProvider.of<UserBloc>(context).add(ChangePhoto());
                         }),
                       )

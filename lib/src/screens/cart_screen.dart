@@ -125,7 +125,7 @@ class CartScreen extends StatelessWidget {
                           if (checkState is CheckboxCartIsChecked) {
                             return checkState.model
                                     .contains(state.retrainData[index])
-                                ? Icon(
+                                ? const Icon(
                                     Icons.check_box,
                                     color: colorName.accentBlue,
                                   ).onTap(() {
@@ -133,7 +133,7 @@ class CartScreen extends StatelessWidget {
                                         .removeCheckBox(
                                             state.retrainData[index]);
                                   })
-                                : Icon(
+                                : const Icon(
                                     Icons.check_box_outline_blank_rounded,
                                     color: colorName.accentBlue,
                                   ).onTap(() {

@@ -76,10 +76,6 @@ class ProductService {
         (a, b) => a.name!.compareTo(b.name!),
       );
 
-      for (var i = 0; i < data.length; i++) {
-        print('HALO : ${data[i].name}');
-      }
-
       return right(data);
     } catch (e) {
       return left(e.toString());

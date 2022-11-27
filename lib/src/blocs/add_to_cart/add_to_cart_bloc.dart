@@ -14,7 +14,6 @@ class AddToCartBloc extends Bloc<AddToCartEvent, AddToCartState> {
 
       if (event.data.variant!.isNotEmpty) {
         if (event.selectedVariant.isNotEmpty) {
-          print('INI LHOO ${event.data.name} ${event.selectedVariant.length}');
           selectedVariant.add(event.selectedVariant);
           final result = await ProductService().addToCart(event.data.copyWith(
             variant: selectedVariant,
