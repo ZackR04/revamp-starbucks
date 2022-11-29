@@ -40,9 +40,36 @@ class CartScreen extends StatelessWidget {
                             .make()
                       ]).make(),
                     ]).expand(),
-                    ButtonWidget(
-                      text: 'Beli',
-                      onPressed: () {},
+                    BlocListener<OrderBloc, OrderState>(
+                      listener: (context, orderState) {
+                        if (orderState is OrderIsSuccess) {
+                          Commons().showSnackBar(context, orderState.message);
+                        }
+                        if (orderState is OrderIsFailed) {
+                          Commons().showSnackBar(context, orderState.message);
+                        }
+                      },
+                      child: BlocBuilder<CheckboxCartCubit, CheckboxCartState>(
+                        builder: (context, state) {
+                          return BlocBuilder<OrderBloc, OrderState>(
+                            builder: (context, orderState) {
+                              return ButtonWidget(
+                                text: 'Beli',
+                                isLoading: (orderState is OrderIsLoading)
+                                    ? true
+                                    : false,
+                                onPressed: () {
+                                  BlocProvider.of<OrderBloc>(context).add(
+                                      OrderRequest(
+                                          cartTotalPrice(),
+                                          (state as CheckboxCartIsChecked)
+                                              .model));
+                                },
+                              );
+                            },
+                          );
+                        },
+                      ),
                     )
                   ]).p16().box.white.withShadow([
                     BoxShadow(
