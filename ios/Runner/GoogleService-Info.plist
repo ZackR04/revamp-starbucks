@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>156922778313-70e0sdnk5dqcnct0jvh182jfg8d32i6s.apps.googleusercontent.com</string>
+	<string>253993870515-6sgq9mnina5vggpof88aburrif2ktr9o.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.156922778313-70e0sdnk5dqcnct0jvh182jfg8d32i6s</string>
+	<string>com.googleusercontent.apps.253993870515-6sgq9mnina5vggpof88aburrif2ktr9o</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCCfVZAZ6Z1-vvsbKWdEhu0Wp8IzE-XyI8</string>
+	<string>AIzaSyDzd0i6nvxLj4P6BympWb38flRL7BzM4mg</string>
 	<key>GCM_SENDER_ID</key>
-	<string>156922778313</string>
+	<string>253993870515</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.starbucksrevamp.starbucks</string>
 	<key>PROJECT_ID</key>
-	<string>starbucks-4d36f</string>
+	<string>redesign-starbucks</string>
 	<key>STORAGE_BUCKET</key>
-	<string>starbucks-4d36f.appspot.com</string>
+	<string>redesign-starbucks.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:156922778313:ios:474d938f0f98ec3670f318</string>
+	<string>1:253993870515:ios:84fc1dd0aa0e9d75f23cc6</string>
 </dict>
 </plist>
