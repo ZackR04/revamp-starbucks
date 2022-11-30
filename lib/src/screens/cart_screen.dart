@@ -229,9 +229,9 @@ class CartScreen extends StatelessWidget {
                               child:
                                   const Icon(Icons.add_circle_outline_rounded)
                                       .onTap(() {
-                                // BlocProvider.of<AddToCartBloc>(context).add(
-                                //     AddToCart(state.retrainData[index],
-                                //         state.retrainData[index].variant![0]));
+                                BlocProvider.of<AddToCartBloc>(context).add(
+                                    AddToCart(state.retrainData[index],
+                                        state.retrainData[index].variant![0]));
                               }),
                             )
                           ])
