@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "253993870515-rcs7oatiop5t7qccra5gqaanh1dvk6s5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.starbucks_revamp.starbucks",
+            "certificate_hash": "4491d4a0ddfa0905a155e5ae575021a9efdf9388"
+          }
+        },
+        {
           "client_id": "253993870515-3q128p7dinqqnt6hv0de6t92m4tq94fa.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "253993870515-3q128p7dinqqnt6hv0de6t92m4tq94fa.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "253993870515-6sgq9mnina5vggpof88aburrif2ktr9o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.starbucksrevamp.starbucks"
+              }
             }
           ]
         }

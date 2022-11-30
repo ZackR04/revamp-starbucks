@@ -118,7 +118,6 @@ class DashboardView extends StatelessWidget {
         }
         if (state is ListProductIsSuccess) {
           //List Product Widget
-
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
