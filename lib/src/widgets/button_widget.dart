@@ -3,14 +3,18 @@ part of 'widgets.dart';
 class ButtonWidget extends StatelessWidget {
   final Function()? onPressed;
   final String text;
+  final double textSize;
+  final Color? colorText;
   final Color? color;
   final bool? isLoading;
   const ButtonWidget(
       {super.key,
       this.onPressed,
       this.text = 'Button',
-      this.isLoading = false,
-      this.color = colorName.primary});
+      this.textSize = 14,
+      this.colorText = colorName.white,
+      this.color = colorName.secondary,
+      this.isLoading = false,});
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +33,8 @@ class ButtonWidget extends StatelessWidget {
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation(color),
               ),
-            ).centered().p(14)
-          : text.text.buttonText(context).color(colorName.white).make().p(14),
+            ).centered()
+          : text.text.buttonText(context).size(textSize).color(colorText).make(),
     );
   }
 }

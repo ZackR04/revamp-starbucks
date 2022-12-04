@@ -18,7 +18,7 @@ class DashboardView extends StatelessWidget {
                 return ZStack([
                   Container(
                     decoration: const BoxDecoration(
-                        color: colorName.white,
+                        color: colorName.secondary,
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(30),
                             bottomRight: Radius.circular(30))),

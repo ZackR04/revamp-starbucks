@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: BlocBuilder<BottomNavBarCubit, BottomNavBarState>(
         builder: (context, state) {
           return BottomNavigationBar(
+            backgroundColor: colorName.white,
               type: BottomNavigationBarType.fixed,
               showUnselectedLabels: false,
               selectedItemColor: colorName.black,

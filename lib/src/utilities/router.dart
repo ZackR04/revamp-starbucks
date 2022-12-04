@@ -29,14 +29,13 @@ final GoRouter router = GoRouter(initialLocation: routeName.splash, routes: [
   GoRoute(
     path: routeName.splash,
     redirect: (context, state) {
-      return routeName.login;
-      // if (FirebaseAuth.instance.currentUser != null) {
-      //   // Commons().setUID(FirebaseAuth.instance.currentUser!.uid);
-      //   BlocProvider.of<UserBloc>(context).add(LoadUserData());
-      //   return routeName.home;
-      // } else {
-      //   return routeName.login;
-      // }
+      if (FirebaseAuth.instance.currentUser != null) {
+        // Commons().setUID(FirebaseAuth.instance.currentUser!.uid);
+        BlocProvider.of<UserBloc>(context).add(LoadUserData());
+        return routeName.home;
+      } else {
+        return routeName.login;
+      }
     },
     builder: (context, state) {
       return const SplashScreen();
