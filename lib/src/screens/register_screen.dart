@@ -15,7 +15,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colorName.register,
+      backgroundColor: colorName.brown,
       body: SafeArea(
           child: BlocListener<RegisterBloc, RegisterState>(
         listener: (context, state) {
