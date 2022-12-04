@@ -11,4 +11,6 @@ mixin colorName {
   static const Color accentRed = Color(0xFFff6b6b);
   static const Color accentYellow = Color(0xFFfeca57);
   static const Color accentBlue = Color(0xFF54a0ff);
+  static const Color cream = Color(0xFFf7f1e3);
+  static const Color register = Color(0xFFffbe76);
 }

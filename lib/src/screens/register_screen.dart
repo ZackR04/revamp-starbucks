@@ -15,6 +15,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: colorName.register,
       body: SafeArea(
           child: BlocListener<RegisterBloc, RegisterState>(
         listener: (context, state) {
@@ -24,15 +25,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
             context.go(routeName.home);
           }
         },
-        child: VStack([
-          VxBox()
-              .size(context.screenWidth, context.percentHeight * 20)
-              .color(colorName.primary)
-              .bottomRounded(value: 20)
-              .make(),
-          'Register'.text.headline5(context).make().p16(),
-          _buildRegistrationForm(),
-        ]),
+        child: Padding(
+          padding: const EdgeInsets.only(right: 38, left: 32),
+          child: VStack([
+            200.heightBox,
+            // VxBox()
+            //     .size(context.screenWidth, context.percentHeight * 20)
+            //     .color(colorName.white)
+            //     .bottomRounded(value: 20)
+            //     .make(),
+            // Center(child: 'Register'.text.headline5(context).make().p16()),
+            Padding(
+              padding: const EdgeInsets.only(right: 32),
+              child: _buildRegistrationForm(),
+            ),
+          ]),
+        ),
       )),
     );
   }
@@ -72,10 +80,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ).wFull(context);
           },
         ),
-        16.heightBox,
-        'Login here'.text.makeCentered().onTap(() {
-          context.go(routeName.login);
-        })
+        // 16.heightBox,
+        // 'Login here'.text.makeCentered().onTap(() {
+        //   context.go(routeName.login);
+        // })
       ],
     ).p(16);
   }
