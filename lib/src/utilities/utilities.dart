@@ -16,3 +16,4 @@ part 'router.dart';
 part 'colors.dart';
 part 'constanta.dart';
 part 'commons.dart';
+part 'assets.dart';

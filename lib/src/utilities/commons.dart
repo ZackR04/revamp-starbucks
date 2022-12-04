@@ -25,6 +25,17 @@ class Commons {
         .toString();
   }
 
+  String greeting() {
+    var hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Good Morning,\n';
+    }
+    if (hour < 17) {
+      return 'Good Afternoon,\n';
+    }
+    return 'Good Evening,\n';
+  }
+
   void showSnackBar(BuildContext context, String message) {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: message.text.make()));
