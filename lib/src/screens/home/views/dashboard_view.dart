@@ -32,11 +32,11 @@ class DashboardView extends StatelessWidget {
                       _buildPromotion(context),
                       16.heightBox,
                       _buildSpecialMenu(),
-                      12.heightBox,
+                      16.heightBox,
                       _buildLastPurchase(),
-                      12.heightBox,
+                      16.heightBox,
                       _buildRecommendation(),
-                      12.heightBox,
+                      16.heightBox,
                       _buildDrinks(),
                     ],
                   ).py12(),
@@ -176,7 +176,7 @@ class DashboardView extends StatelessWidget {
   Widget _buildSpecialMenu() {
     return SectionWidget(
       title: "Today's Promo",
-      routeName: routeName.cart,
+      routeName: routeName.menuPath,
       child: BlocConsumer<ListProductBloc, ListProductState>(
         listener: (context, state) {
           if (state is ListProductIsFailed) {
@@ -223,7 +223,7 @@ class DashboardView extends StatelessWidget {
   Widget _buildLastPurchase() {
     return SectionWidget(
       title: "Last Purchase",
-      routeName: routeName.cart,
+      routeName: routeName.menuPath,
       child: Container(),
     ).px16();
   }
@@ -231,7 +231,7 @@ class DashboardView extends StatelessWidget {
   Widget _buildRecommendation() {
     return SectionWidget(
       title: "Recommended For You",
-      routeName: routeName.cart,
+      routeName: routeName.menuPath,
       child: BlocConsumer<ListProductBloc, ListProductState>(
         listener: (context, state) {
           if (state is ListProductIsFailed) {
@@ -278,7 +278,7 @@ class DashboardView extends StatelessWidget {
   Widget _buildDrinks() {
     return SectionWidget(
       title: "Drinks",
-      routeName: routeName.cart,
+      routeName: routeName.menuPath,
       child: BlocConsumer<ListProductBloc, ListProductState>(
         listener: (context, state) {
           if (state is ListProductIsFailed) {
