@@ -1,8 +1,11 @@
 part of 'utilities.dart';
 
 mixin colorName {
-  static const Color primary = Color(0xFFee5253);
-  static const Color secondary = Color(0xFFff9f43);
+  static const Color primary = Color(0xFFf7f1e3);
+  static const Color secondary = Color(0xFF53a97e);
+  static const Color brown = Color(0xFFe7c498);
+  static const Color red = Color(0xFFee5253);
+  static const Color oranye = Color(0xFFff9f43);
   static const Color black = Color(0xFF2f3640);
   static const Color grey = Color(0xFF7f8fa6);
   static const Color background = Color(0xFFFAFAFA);

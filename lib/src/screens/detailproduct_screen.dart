@@ -26,6 +26,7 @@ class DetailProductScreen extends StatelessWidget {
                 return BlocBuilder<CheckVariantCubit, CheckVariantState>(
                   builder: (context, variantState) {
                     return ButtonWidget(
+                      color: colorName.secondary,
                       text: 'Add To Cart',
                       isLoading: (addToCartState is AddToCartIsLoading),
                       onPressed: () {

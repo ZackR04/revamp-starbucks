@@ -134,7 +134,7 @@ class UserView extends StatelessWidget {
                   )
                 ],
                 crossAlignment: CrossAxisAlignment.center,
-              ).wFull(context);
+              ).wFull(context).pSymmetric(v: 12);
             }
             return 0.heightBox;
           },
