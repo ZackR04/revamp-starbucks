@@ -246,7 +246,7 @@ class _LoginScreenState extends State<LoginScreen>
               },
               isLoading: (state is LoginIsLoading) ? true : false,
               text: 'Login',
-              color: colorName.cream,
+              color: colorName.register,
             ).wFull(context);
           },
         ),
