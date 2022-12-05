@@ -52,6 +52,7 @@ class _LoginScreenState extends State<LoginScreen>
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
           child: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {

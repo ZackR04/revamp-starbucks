@@ -44,7 +44,8 @@ class DashboardView extends StatelessWidget {
                     )
                   : null,
             ).onTap(() {
-              context.go(routeName.adminPath);
+              // context.go(routeName.adminPath);
+              BlocProvider.of<UserBloc>(context).add(LogOutUser());
             }),
             16.widthBox,
             "Selamat Datang,\n".richText.size(11).withTextSpanChildren([

@@ -39,7 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               padding: const EdgeInsets.only(right: 32),
               child: _buildRegistrationForm(),
             ),
-          ]),
+          ]).scrollVertical(),
         ),
       )),
     );
