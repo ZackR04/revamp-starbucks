@@ -72,8 +72,6 @@ class DashboardView extends StatelessWidget {
         }),
         //ICON Cart
       ],
-      // alignment: MainAxisAlignment.spaceBetween,
-      // axisSize: MainAxisSize.max,
     ).px20();
   }
 
@@ -214,7 +212,7 @@ class DashboardView extends StatelessWidget {
               },
             ).box.height(135).make();
           }
-          return Container();
+          return 0.heightBox;
         },
       ),
     ).px16();
@@ -269,7 +267,7 @@ class DashboardView extends StatelessWidget {
               },
             ).box.height(135).make();
           }
-          return Container();
+          return 0.heightBox;
         },
       ),
     ).px16();
@@ -315,7 +313,7 @@ class DashboardView extends StatelessWidget {
               },
             );
           }
-          return Container();
+          return 0.heightBox;
         },
       ),
     ).px16();

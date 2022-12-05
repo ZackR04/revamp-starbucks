@@ -71,7 +71,7 @@ final GoRouter router = GoRouter(initialLocation: routeName.splash, routes: [
         GoRoute(
           path: routeName.wishlist,
           builder: (context, state) {
-            return const WishlistView();
+            return const WishlistScreen();
           },
         ),
         GoRoute(

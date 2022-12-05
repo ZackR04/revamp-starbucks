@@ -25,6 +25,9 @@ class HomeScreen extends StatelessWidget {
               currentIndex: (state as BottomNavBarInitial).index,
               onTap: (value) {
                 BlocProvider.of<BottomNavBarCubit>(context).changeIndex(value);
+                if (value == 3) {
+                  BlocProvider.of<ListOrderBloc>(context).add(FetchListOrder());
+                }
               },
               items: [
                 BottomNavigationBarItem(
