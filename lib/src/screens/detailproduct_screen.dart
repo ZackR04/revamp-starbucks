@@ -72,11 +72,6 @@ class DetailProductScreen extends StatelessWidget {
           8.heightBox,
           Commons().setPriceToIDR(state.data.price!).text.size(16).make(),
           8.heightBox,
-          VStack([
-            'Deskripsi'.text.size(16).bold.make(),
-            4.heightBox,
-            state.data.desc!.text.size(14).color(colorName.grey).make(),
-          ]).py16(),
         ]).expand(),
         BlocListener<WishlistCubit, WishlistState>(
           listener: (context, wishlistState) {
@@ -118,7 +113,13 @@ class DetailProductScreen extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20),
                     child: Container(
-                      color: Colors.white60,
+                      decoration: const BoxDecoration(
+                        color: colorName.primary,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(25),
+                        ),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Column(
@@ -132,6 +133,13 @@ class DetailProductScreen extends StatelessWidget {
                                     .make(),
                               ],
                             ),
+                            VStack([
+                              state.data.desc!.text
+                                  .size(14)
+                                  .color(colorName.grey)
+                                  .center
+                                  .make(),
+                            ]).py16(),
                             16.heightBox,
                             Column(
                               children: const [
@@ -195,44 +203,50 @@ class DetailProductScreen extends StatelessWidget {
                               ],
                             ),
                             30.heightBox,
-                            VStack([
-                              'Variant Produk'.text.center.bold.make(),
-                              8.heightBox,
-                              BlocBuilder<CheckVariantCubit, CheckVariantState>(
-                                builder: (context, variantState) {
-                                  return HStack(state.data.variant!
-                                      .map((e) => VxBox(
-                                                  child: e.text
-                                                      .color((variantState
-                                                                  as CheckVariantIsSelected)
-                                                              .selectedVariant
-                                                              .contains(e)
-                                                          ? colorName.white
-                                                          : colorName.black)
-                                                      .make())
-                                              .color(variantState
-                                                      .selectedVariant
-                                                      .contains(e)
-                                                  ? colorName.secondary
-                                                  : colorName.white)
-                                              .border(
-                                                  color: variantState
-                                                          .selectedVariant
-                                                          .contains(e)
-                                                      ? colorName.white
-                                                      : colorName.grey)
-                                              .p16
-                                              .rounded
-                                              .make()
-                                              .onTap(() {
-                                            BlocProvider.of<CheckVariantCubit>(
-                                                    context)
-                                                .selectItem(e);
-                                          }).pOnly(right: 4))
-                                      .toList());
-                                },
-                              )
-                            ])
+                            Column(
+                              children: const [
+                                Text(
+                                  'Variant Product',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            8.heightBox,
+                            BlocBuilder<CheckVariantCubit, CheckVariantState>(
+                              builder: (context, variantState) {
+                                return HStack(state.data.variant!
+                                    .map((e) => VxBox(
+                                                child: e.text
+                                                    .color((variantState
+                                                                as CheckVariantIsSelected)
+                                                            .selectedVariant
+                                                            .contains(e)
+                                                        ? colorName.white
+                                                        : colorName.black)
+                                                    .make())
+                                            .color(variantState.selectedVariant
+                                                    .contains(e)
+                                                ? colorName.secondary
+                                                : colorName.white)
+                                            .border(
+                                                color: variantState
+                                                        .selectedVariant
+                                                        .contains(e)
+                                                    ? colorName.white
+                                                    : colorName.grey)
+                                            .p16
+                                            .rounded
+                                            .make()
+                                            .onTap(() {
+                                          BlocProvider.of<CheckVariantCubit>(
+                                                  context)
+                                              .selectItem(e);
+                                        }).pOnly(right: 4))
+                                    .toList());
+                              },
+                            ),
                           ],
                         ),
                       ),
@@ -240,11 +254,25 @@ class DetailProductScreen extends StatelessWidget {
                   );
                 });
           },
-          child: const Center(
-            child: Text(
-              'Customize',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          child: Center(
+            child: Column(
+              children: const [
+                Text(
+                  'Customize',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
+            // child: Text(
+            //   'Customize',
+            //   style: TextStyle(
+            //     fontSize: 16,
+            //     fontWeight: FontWeight.bold,
+            //   ),
+            // ),
           ))
     ]).p16();
   }
