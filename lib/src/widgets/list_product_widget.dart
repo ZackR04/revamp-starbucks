@@ -16,28 +16,57 @@ class ListProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return VStack(
+    return HStack(
       [
         VxCircle(
-            radius: 100,
+            radius: 95,
             backgroundImage: DecorationImage(
                 image: NetworkImage(pictures!), fit: BoxFit.cover)
-            // child: AspectRatio(
-            //   aspectRatio: 16 / 10,
-
-            // ),
-            ),
-        4.heightBox,
-        name!.text.maxLines(2).size(8).base.align(TextAlign.center).make(),
-        // VStack([
-        //   name!.text.size(16).bold.makeCentered(),
-        //   4.heightBox,
-        //   Commons().setPriceToIDR(price!).text.size(12).make(),
-        // ])
+        ),
+        12.widthBox,
+        VStack([
+          name!.text.maxLines(2).size(14).base.bold.make(),
+          id!.text.maxLines(2).size(14).base.bold.make(),
+          4.heightBox,
+          Commons().setPriceToIDR(price!).text.size(14).make(),
+        ]).expand(),
+        BlocListener<WishlistCubit, WishlistState>(
+            listener: (context, wishlistState) {
+              if (wishlistState is WishlistIsSuccess) {
+                Commons().showSnackBar(context, wishlistState.message);
+              }
+              if (wishlistState is WishlistIsFailed) {
+                Commons().showSnackBar(context, wishlistState.message);
+              }
+            },
+          child: BlocBuilder<CheckSavedCubit, CheckSavedState>(
+            builder: (context, checkSavedState) {
+              if (checkSavedState is CheckSavedIsSuccess) {
+                return IconButton(
+                    onPressed: () {
+                      BlocProvider.of<WishlistCubit>(context)
+                          .removeFromWishList(id!);
+                    },
+                    icon: const Icon(
+                      Icons.favorite,
+                      color: colorName.accentRed,
+                    ));
+              }
+              return IconButton(
+                  onPressed: () {
+                    // BlocProvider.of<WishlistCubit>(context)
+                    //     .addToWishList(state.products);
+                  },
+                  icon: const Icon(Icons.favorite_border_rounded));
+            },
+          ),
+        )
       ],
-      crossAlignment: CrossAxisAlignment.center,
-    ).box.make().onTap(() {
-      context.go(routeName.detailPath, extra: id);
-    });
+    ).box
+    .py12
+     .make()
+        .onTap(() {
+          context.go(routeName.detailPath, extra: id);
+        });
   }
 }

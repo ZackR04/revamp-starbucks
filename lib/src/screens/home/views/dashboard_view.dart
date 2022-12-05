@@ -202,7 +202,7 @@ class DashboardView extends StatelessWidget {
               ),
               itemCount: state.products.length,
               itemBuilder: (context, index) {
-                return ListProductWidget(
+                return GridProductWidget(
                   pictures: state.products[index].pictures?.first,
                   name: state.products[index].name,
                   price: state.products[index].price,
@@ -257,7 +257,7 @@ class DashboardView extends StatelessWidget {
               ),
               itemCount: state.products.length,
               itemBuilder: (context, index) {
-                return ListProductWidget(
+                return GridProductWidget(
                   pictures: state.products[index].pictures?.first,
                   name: state.products[index].name,
                   price: state.products[index].price,
@@ -303,7 +303,7 @@ class DashboardView extends StatelessWidget {
               ),
               itemCount: state.products.length,
               itemBuilder: (context, index) {
-                return ListProductWidget(
+                return GridProductWidget(
                   pictures: state.products[index].pictures?.first,
                   name: state.products[index].name,
                   price: state.products[index].price,
