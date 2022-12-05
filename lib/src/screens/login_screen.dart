@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen>
                     height: _size.height,
                     left: _isShowSignUp ? -_size.width * 0.76 : 0,
                     child: Container(
-                      color: colorName.cream,
+                      color: colorName.primary,
                       child: Center(
                           child: Padding(
                         padding: const EdgeInsets.only(right: 32, left: 32),
@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen>
                     left:
                         _isShowSignUp ? _size.width * 0.12 : _size.width * 0.88,
                     child: Container(
-                      color: colorName.register,
+                      color: colorName.brown,
                       child: const RegisterScreen(),
                     ),
                   ),
@@ -105,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen>
                     child: Container(
                       margin: const EdgeInsets.all(10),
                       child: Image.asset(
-                        'images/starbucks.png',
+                        'assets/images/starbucks.png',
                         height: 120,
                         width: 120,
                       ),
@@ -211,13 +211,16 @@ class _LoginScreenState extends State<LoginScreen>
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        IconButton(onPressed: () {}, icon: Image.asset('images/facebook.png')),
+        IconButton(
+            onPressed: () {}, icon: Image.asset('assets/images/facebook.png')),
         13.widthBox,
-        IconButton(onPressed: () {}, icon: Image.asset('images/google.png')),
+        IconButton(
+            onPressed: () {}, icon: Image.asset('assets/images/google.png')),
         13.widthBox,
-        IconButton(onPressed: () {}, icon: Image.asset('images/apple.png')),
+        IconButton(
+            onPressed: () {}, icon: Image.asset('assets/images/apple.png')),
         13.widthBox,
-        // IconButton(onPressed: () {}, icon: Image.asset('images/linkedin.png')),
+        // IconButton(onPressed: () {}, icon: Image.asset('assets/images/linkedin.png')),
       ],
     );
   }
@@ -246,7 +249,7 @@ class _LoginScreenState extends State<LoginScreen>
               },
               isLoading: (state is LoginIsLoading) ? true : false,
               text: 'Login',
-              color: colorName.register,
+              color: colorName.primary,
             ).wFull(context);
           },
         ),

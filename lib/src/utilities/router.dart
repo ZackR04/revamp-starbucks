@@ -5,12 +5,24 @@ mixin routeName {
   static const splash = '/splash';
   static const register = '/register';
   static const home = '/home';
+//
   static const admin = 'admin';
   static const adminPath = '/home/admin';
+//
   static const cart = 'cart';
   static const cartPath = '/home/cart';
+//
   static const detail = 'detail';
   static const detailPath = '/home/detail';
+//
+  static const wallet = 'wallet';
+  static const walletPath = '/home/wallet';
+//
+  static const wishlist = 'wishlist';
+  static const wishlistPath = '/home/wishlist';
+//
+  static const menu = 'menu';
+  static const menuPath = '/home/menu';
 }
 
 final GoRouter router = GoRouter(initialLocation: routeName.splash, routes: [
@@ -50,6 +62,18 @@ final GoRouter router = GoRouter(initialLocation: routeName.splash, routes: [
         return const HomeScreen();
       },
       routes: [
+        GoRoute(
+          path: routeName.menu,
+          builder: (context, state) {
+            return const MenuScreen();
+          },
+        ),
+        GoRoute(
+          path: routeName.wishlist,
+          builder: (context, state) {
+            return const WishlistScreen();
+          },
+        ),
         GoRoute(
           path: routeName.cart,
           builder: (context, state) {

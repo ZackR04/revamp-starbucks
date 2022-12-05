@@ -36,6 +36,7 @@ class App extends StatelessWidget {
                 AdminBloc(BlocProvider.of<ProductPictureCubit>(context))),
       ],
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         routerConfig: router,
       ),
     );

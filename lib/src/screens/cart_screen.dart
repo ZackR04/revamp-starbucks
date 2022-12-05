@@ -6,32 +6,235 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colorName.background,
-      bottomNavigationBar: BlocBuilder<ListCartBloc, ListCartState>(
-        builder: (context, state) {
-          if (state is ListCartIsSuccess) {
-            return BlocBuilder<CheckboxCartCubit, CheckboxCartState>(
-              builder: (context, checkState) {
-                if (checkState is CheckboxCartIsChecked) {
-                  List tempList = <ProductModel>[];
+      backgroundColor: colorName.primary,
+      body: SafeArea(
+        child: VStack([
+          _buildAppBar(context),
+          4.heightBox,
+          _buildListCart(),
+          const Divider(
+            color: colorName.brown,
+          ).px16(),
+          _buildTotalPrice(context),
+          _buildPayButton(context),
+        ]).scrollVertical(),
+      ),
+    );
+  }
 
-                  double cartTotalPrice() {
-                    double total = 0;
+  Widget _buildAppBar(BuildContext context) {
+    return VStack([
+      AppBar(
+        elevation: 0.0,
+        backgroundColor: colorName.primary,
+        iconTheme: const IconThemeData(color: colorName.black),
+      ),
+      HStack([
+        'Review Order'.text.size(24).base.bold.make().expand(),
+        ButtonWidget(
+          onPressed: () {
+            context.go(routeName.menuPath);
+          },
+          text: 'Add Items +',
+          color: colorName.secondary,
+        ),
+      ]).pSymmetric(v: 4, h: 16),
 
-                    for (var item in checkState.model) {
-                      for (var u in state.data) {
-                        if (u.variant![0] == item.variant![0]) {
-                          tempList.add(u);
-                          total += item.price!;
-                        }
-                      }
-                    }
-                    return total;
-                  }
+    ]);
+  }
 
-                  return HStack([
-                    VStack([
-                      'Total,\n'.richText.withTextSpanChildren([
+  Widget _buildListCart() {
+    return BlocBuilder<ListCartBloc, ListCartState>(
+      builder: (context, state) {
+        if (state is ListCartIsSuccess) {
+          final data = state.data;
+          return ListView.separated(
+            shrinkWrap: true,
+            separatorBuilder: (context, index) => const Divider(
+              color: colorName.brown,
+            ).px16(),
+            itemCount: state.retrainData.length,
+            itemBuilder: (context, index) {
+              List tempList = <ProductModel>[];
+              for (var u in data) {
+                if (u.variant![0] == state.retrainData[index].variant![0]) {
+                  tempList.add(u);
+                }
+              }
+              return VxBox(
+                child: HStack([
+                  VxCircle(
+                    radius: 100,
+                    backgroundImage: DecorationImage(
+                        image: NetworkImage(
+                          state.retrainData[index].pictures![0],
+                        ),
+                        fit: BoxFit.cover),
+                  )
+                      .box
+                      .size(
+                          context.percentWidth * 16, context.percentWidth * 16)
+                      .make(),
+                  12.widthBox,
+                  VStack([
+                    state.retrainData[index].name!.text.size(18).bold.make(),
+                    4.heightBox,
+                    Commons()
+                        .setPriceToIDR(state.retrainData[index].price!)
+                        .text
+                        .size(14)
+                        // .bold
+                        .make(),
+                    state.retrainData[index].variant![0].text
+                        .color(colorName.secondary)
+                        .size(8)
+                        .make()
+                        .pSymmetric(v: 4)
+                        .box
+                        .make(),
+                    6.heightBox,
+                    Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: colorName.brown.withOpacity(0.4)),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: HStack([
+                          const Icon(
+                            Icons.remove_outlined,
+                            color: colorName.secondary,
+                            size: 14,
+                          ).onTap(() {
+                            BlocProvider.of<ListCartBloc>(context)
+                                .add(DecrementCart(state.retrainData[index]));
+                          }),
+                          4.widthBox,
+                          tempList.length.text
+                              .size(12)
+                              .make()
+                              .pSymmetric(h: 12, v: 6),
+                          4.widthBox,
+                          BlocListener<AddToCartBloc, AddToCartState>(
+                            listener: (context, state) {
+                              if (state is AddToCartIsSuccess) {
+                                BlocProvider.of<ListCartBloc>(context)
+                                    .add(FetchListCart());
+                              }
+                            },
+                            child: const Icon(
+                              Icons.add_outlined,
+                              color: colorName.secondary,
+                              size: 14,
+                            ).onTap(() {
+                              BlocProvider.of<AddToCartBloc>(context).add(
+                                  AddToCart(state.retrainData[index],
+                                      state.retrainData[index].variant![0]));
+                            }),
+                          )
+                        ]).p2())
+                  ]).expand(),
+                ]).p4(),
+              ).px8.make();
+            },
+          );
+        }
+        return 0.heightBox;
+      },
+    );
+  }
+
+  Widget _buildTotalPrice(BuildContext context) {
+    return BlocBuilder<ListCartBloc, ListCartState>(
+      builder: (context, state) {
+        if (state is ListCartIsSuccess) {
+          List tempList = <ProductModel>[];
+
+          double cartSubtotal() {
+            double total = 0;
+            for (var item in state.data) {
+              if (item.variant![0] == item.variant![0]) {
+                tempList.add(item);
+                total += item.price!;
+              }
+            }
+            return total;
+          }
+
+          double cartTax() {
+            double total = cartSubtotal() * 0.1;
+            return total;
+          }
+
+          double discount(){
+            double total = 0;
+            return total;
+          }
+
+          double cartTotalPrice() {
+            double total = 0;
+            total = cartSubtotal() + cartTax() - discount();
+            return total;
+          }
+
+          return
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: colorName.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: colorName.grey.withOpacity(0.2),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: const Offset(0, 3),
+                    )
+                  ]),
+              child: VStack(
+                  [
+                    HStack([
+                      'Summary'.text.size(16).base.bold.make().expand(),
+                      'Total ${state.data.length} items'.text.size(16).base.bold.make()
+                    ]).px12(),
+                    const Divider(
+                      thickness: 0.5,
+                      color: colorName.brown,
+                    ),
+                    HStack([
+                      'Subtotal: '.text.make().expand(),
+                      ''.richText.withTextSpanChildren([
+                        Commons()
+                            .setPriceToIDR(cartSubtotal())
+                            .textSpan
+                            .bold
+                            .make()
+                      ]).make(),
+                    ]).pSymmetric(h: 12, v: 4),
+                    HStack([
+                      'Tax 10%: '.text.make().expand(),
+                      ''.richText.withTextSpanChildren([
+                        Commons()
+                            .setPriceToIDR(cartTax())
+                            .textSpan
+                            .bold
+                            .make()
+                      ]).make(),
+                    ]).pSymmetric(h: 12, v: 4),
+                    HStack([
+                      'Discount: '.text.color(colorName.secondary).make().expand(),
+                      ''.richText.withTextSpanChildren([
+                        Commons()
+                            .setPriceToIDR(discount())
+                            .textSpan
+                            .color(colorName.secondary)
+                            .make()
+                      ]).make(),
+                    ]).pSymmetric(h: 12, v: 4),
+                    const Divider(
+                      thickness: 1.0,
+                      color: colorName.brown,
+                    ).px12(),
+                    HStack([
+                      'Total'.text.size(16).bold.make().expand(),
+                      ''.richText.withTextSpanChildren([
                         Commons()
                             .setPriceToIDR(cartTotalPrice())
                             .textSpan
@@ -39,224 +242,80 @@ class CartScreen extends StatelessWidget {
                             .bold
                             .make()
                       ]).make(),
-                    ]).expand(),
-                    BlocListener<OrderBloc, OrderState>(
-                      listener: (context, orderState) {
-                        if (orderState is OrderIsSuccess) {
-                          Commons().showSnackBar(context, orderState.message);
-                        }
-                        if (orderState is OrderIsFailed) {
-                          Commons().showSnackBar(context, orderState.message);
-                        }
-                      },
-                      child: BlocBuilder<CheckboxCartCubit, CheckboxCartState>(
-                        builder: (context, state) {
-                          return BlocBuilder<OrderBloc, OrderState>(
-                            builder: (context, orderState) {
-                              return ButtonWidget(
-                                text: 'Beli',
-                                isLoading: (orderState is OrderIsLoading)
-                                    ? true
-                                    : false,
-                                onPressed: () {
-                                  BlocProvider.of<OrderBloc>(context).add(
-                                      OrderRequest(
-                                          cartTotalPrice(),
-                                          (state as CheckboxCartIsChecked)
-                                              .model));
-                                },
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    )
-                  ]).p16().box.white.withShadow([
-                    BoxShadow(
-                        blurRadius: 10, color: colorName.grey.withOpacity(.1))
-                  ]).make();
-                }
-                return 0.heightBox;
-              },
-            );
-          }
-          return 0.heightBox;
-        },
-      ),
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: colorName.white,
-        title: 'Keranjang'.text.color(colorName.black).make(),
-        iconTheme: const IconThemeData(color: colorName.black),
-        actions: [
-          BlocBuilder<ListCartBloc, ListCartState>(
-            builder: (context, state) {
-              return (state is ListCartIsSuccess)
-                  ? BlocBuilder<CheckboxCartCubit, CheckboxCartState>(
-                      builder: (context, checkState) {
-                        if (checkState is CheckboxCartIsChecked) {
-                          return ((checkState.model
-                                      .containsAll(state.retrainData))
-                                  ? 'Batalkan'
-                                  : 'Pilih Semua')
-                              .text
-                              .medium
-                              .color((checkState.model
-                                      .containsAll(state.retrainData))
-                                  ? colorName.accentRed
-                                  : colorName.accentBlue)
-                              .makeCentered()
-                              .pOnly(right: 16)
-                              .onTap(() {
-                            if ((checkState.model
-                                .containsAll(state.retrainData))) {
-                              BlocProvider.of<CheckboxCartCubit>(context)
-                                  .removeAllCheckBox();
-                            } else {
-                              BlocProvider.of<CheckboxCartCubit>(context)
-                                  .addAllCheckBox(state.retrainData);
-                            }
-                          });
-                        }
-                        return 0.heightBox;
-                      },
-                    )
-                  : 0.heightBox;
-            },
-          )
-        ],
-      ),
-      body: BlocBuilder<ListCartBloc, ListCartState>(
+                    ]).pSymmetric(h: 12, v: 4),
+                    //List Cart
+                  ]).py12(),
+            ).pSymmetric(h: 16, v: 8).w(context.screenWidth);
+        }
+        return 0.heightBox;
+      }
+    );
+  }
+
+  Widget _buildPayButton(BuildContext context) {
+    return BlocListener<OrderBloc, OrderState>(
+      listener: (context, orderState) {
+        if (orderState is OrderIsSuccess) {
+          Commons().showSnackBar(context, orderState.message);
+        }
+        if (orderState is OrderIsFailed) {
+          Commons().showSnackBar(context, orderState.message);
+        }
+      },
+      child: BlocBuilder<ListCartBloc, ListCartState>(
         builder: (context, state) {
           if (state is ListCartIsSuccess) {
-            final data = state.data;
+            List tempList = <ProductModel>[];
 
-            return ListView.separated(
-              separatorBuilder: (context, index) => VxDivider(
-                color: colorName.grey.withOpacity(.1),
-              ),
-              itemCount: state.retrainData.length,
-              itemBuilder: (context, index) {
-                List tempList = <ProductModel>[];
-                for (var u in data) {
-                  if (u.variant![0] == state.retrainData[index].variant![0]) {
-                    tempList.add(u);
-                  }
+            double cartSubtotal() {
+              double total = 0;
+              for (var item in state.data) {
+                if (item.variant![0] == item.variant![0]) {
+                  tempList.add(item);
+                  total += item.price!;
                 }
+              }
+              return total;
+            }
 
-                return VxBox(
-                  child: HStack(
-                    [
-                      BlocBuilder<CheckboxCartCubit, CheckboxCartState>(
-                        builder: (context, checkState) {
-                          if (checkState is CheckboxCartIsChecked) {
-                            return checkState.model
-                                    .contains(state.retrainData[index])
-                                ? const Icon(
-                                    Icons.check_box,
-                                    color: colorName.accentBlue,
-                                  ).onTap(() {
-                                    BlocProvider.of<CheckboxCartCubit>(context)
-                                        .removeCheckBox(
-                                            state.retrainData[index]);
-                                  })
-                                : const Icon(
-                                    Icons.check_box_outline_blank_rounded,
-                                    color: colorName.accentBlue,
-                                  ).onTap(() {
-                                    BlocProvider.of<CheckboxCartCubit>(context)
-                                        .addCheckBox(state.retrainData[index]);
-                                  });
-                          }
-                          return 0.heightBox;
-                        },
-                      ),
-                      16.widthBox,
-                      VxBox()
-                          .bgImage(DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                state.retrainData[index].pictures![0],
-                              )))
-                          .roundedSM
-                          .size(context.percentWidth * 16,
-                              context.percentWidth * 16)
-                          .make(),
-                      16.widthBox,
-                      VStack(
-                        [
-                          state.retrainData[index].name!.text
-                              .size(16)
-                              .bold
-                              .make(),
-                          4.heightBox,
-                          Commons()
-                              .setPriceToIDR(state.retrainData[index].price!)
-                              .text
-                              .size(12)
-                              .make(),
-                          4.heightBox,
-                          state.retrainData[index].variant![0].text
-                              .size(12)
-                              .make()
-                              .pSymmetric(h: 12, v: 6)
-                              .box
-                              .color(colorName.grey.withOpacity(.1))
-                              .make(),
-                          4.heightBox,
-                          HStack([
-                            const Icon(Icons.remove_circle_outline_rounded)
-                                .onTap(() {
-                              BlocProvider.of<ListCartBloc>(context)
-                                  .add(DecrementCart(state.retrainData[index]));
-                            }),
-                            4.widthBox,
-                            tempList.length.text
-                                .size(12)
-                                .make()
-                                .pSymmetric(h: 12, v: 6)
-                                .box
-                                .color(colorName.grey.withOpacity(.1))
-                                .make(),
-                            4.widthBox,
-                            BlocListener<AddToCartBloc, AddToCartState>(
-                              listener: (context, state) {
-                                if (state is AddToCartIsSuccess) {
-                                  BlocProvider.of<ListCartBloc>(context)
-                                      .add(FetchListCart());
-                                }
-                              },
-                              child:
-                                  const Icon(Icons.add_circle_outline_rounded)
-                                      .onTap(() {
-                                BlocProvider.of<AddToCartBloc>(context).add(
-                                    AddToCart(state.retrainData[index],
-                                        state.retrainData[index].variant![0]));
-                              }),
-                            )
-                          ])
-                        ],
-                        alignment: MainAxisAlignment.start,
-                      ).expand(),
-                      BlocListener<ListCartBloc, ListCartState>(
-                        listener: (context, state) {},
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.delete_outline,
-                              color: colorName.accentRed,
-                            )),
-                      )
-                    ],
-                    alignment: MainAxisAlignment.start,
-                  ).p16(),
-                ).make();
+            double cartTax() {
+              double total = cartSubtotal() * 0.1;
+              return total;
+            }
+
+            double discount(){
+              double total = 0;
+              return total;
+            }
+
+            double cartTotalPrice() {
+              double total = 0;
+              total = cartSubtotal() + cartTax() - discount();
+              return total;
+            }
+
+            return ButtonWidget(
+              color: colorName.secondary,
+              text: 'Pay',
+              textSize: 16,
+              isLoading: (state is OrderIsLoading)
+                  ? true
+                  : false,
+              onPressed: () {
+                BlocProvider.of<OrderBloc>(context).add(
+                    OrderRequest(
+                        cartTotalPrice(),
+                        (state as ListCartIsSuccess).data
+                    ));
               },
-            );
+            )
+                .w(context.screenWidth)
+                .h(context.percentHeight*5)
+                .pSymmetric(h: 16, v: 8);
           }
           return 0.heightBox;
         },
-      ),
+      )
     );
   }
 }
