@@ -6,6 +6,7 @@ class WishlistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: colorName.primary,
       body: SafeArea(
         child: BlocBuilder<ListWishlistBloc, ListWishlistState>(
           builder: (context, state) {
@@ -19,16 +20,21 @@ class WishlistScreen extends StatelessWidget {
                   return VxBox(
                     child: HStack(
                       [
-                        VxBox()
-                            .bgImage(DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                  data.pictures![0],
-                                )))
-                            .roundedSM
-                            .size(context.percentWidth * 16,
-                                context.percentWidth * 16)
-                            .make(),
+                        VxCircle(
+                            radius: 95,
+                            backgroundImage: DecorationImage(
+                                image: NetworkImage(data.pictures![0]), fit: BoxFit.cover)
+                        ),
+                        // VxBox()
+                        //     .bgImage(DecorationImage(
+                        //         fit: BoxFit.cover,
+                        //         image: NetworkImage(
+                        //           data.pictures![0],
+                        //         )))
+                        //     .roundedSM
+                        //     .size(context.percentWidth * 16,
+                        //         context.percentWidth * 16)
+                        //     .make(),
                         16.widthBox,
                         VStack(
                           [
@@ -76,17 +82,18 @@ class WishlistScreen extends StatelessWidget {
                     .makeCentered(),
                 8.heightBox,
                 ButtonWidget(
-                    color: colorName.accentBlue,
+                    color: colorName.secondary,
                     text: 'Cari Produk',
                     onPressed: () {
-                      BlocProvider.of<BottomNavBarCubit>(context)
-                          .changeIndex(0);
+                      context.go(routeName.menuPath);
+                      // BlocProvider.of<BottomNavBarCubit>(context)
+                      //     .changeIndex(0);
                     })
               ],
               crossAlignment: CrossAxisAlignment.center,
             ).centered();
           },
-        ),
+        ).py12(),
       ),
     );
   }

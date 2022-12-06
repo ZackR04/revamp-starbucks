@@ -108,6 +108,8 @@ class DashboardView extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
+                  BlocProvider.of<ListWishlistBloc>(context)
+                      .add(FetchListWishlist());
                   context.go(routeName.wishlistPath);
                 },
                 icon: Image.asset('assets/icons/favourite.png'),
