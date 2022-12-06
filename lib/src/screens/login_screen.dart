@@ -105,9 +105,9 @@ class _LoginScreenState extends State<LoginScreen>
                     child: Container(
                       margin: const EdgeInsets.all(10),
                       child: Image.asset(
-                        'assets/images/starbucks.png',
-                        height: 120,
-                        width: 120,
+                        'assets/images/starbucks hijau.png',
+                        height: 160,
+                        width: 160,
                       ),
                     ),
                   ),
@@ -211,12 +211,15 @@ class _LoginScreenState extends State<LoginScreen>
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        IconButton(onPressed: () {}, icon: Image.asset('assets/images/facebook.png')),
+        IconButton(
+            onPressed: () {}, icon: Image.asset('assets/images/facebook.png')),
         13.widthBox,
-        IconButton(onPressed: () {}, icon: Image.asset('assets/images/google.png')),
+        IconButton(
+            onPressed: () {}, icon: Image.asset('assets/images/google.png')),
         13.widthBox,
-        IconButton(onPressed: () {}, icon: Image.asset('assets/images/apple.png')),
-        13.widthBox,
+        IconButton(
+            onPressed: () {}, icon: Image.asset('assets/images/apple.png')),
+        // 13.widthBox,
         // IconButton(onPressed: () {}, icon: Image.asset('assets/images/linkedin.png')),
       ],
     );
@@ -246,7 +249,9 @@ class _LoginScreenState extends State<LoginScreen>
               },
               isLoading: (state is LoginIsLoading) ? true : false,
               text: 'Login',
-              color: colorName.primary,
+              colorText: colorName.black,
+              textSize: 20,
+              color: colorName.brown,
             ).wFull(context);
           },
         ),

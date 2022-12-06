@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 part of 'screens.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -14,14 +16,13 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorName.primary,
-      body:
-          SafeArea(
-            child: VStack([
-              4.heightBox,
-              _buildSearchBar(context),
-              _buildListMenu(),
-            ]),
-          ),
+      body: SafeArea(
+        child: VStack([
+          4.heightBox,
+          _buildSearchBar(context),
+          _buildListMenu(),
+        ]),
+      ),
     );
   }
 
@@ -32,13 +33,11 @@ class _MenuScreenState extends State<MenuScreen> {
       maxLines: 1,
       cursorColor: colorName.secondary,
       decoration: InputDecoration(
-        hintText: 'Cari Minuman?',
-        contentPadding: EdgeInsets.symmetric(horizontal: 20),
-        suffixIcon: Icon(Icons.search),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(context.percentWidth*10)
-        )
-      ),
+          hintText: 'Cari Minuman?',
+          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+          suffixIcon: Icon(Icons.search),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(context.percentWidth * 10))),
     ).pSymmetric(h: 12, v: 8);
   }
 

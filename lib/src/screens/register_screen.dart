@@ -77,6 +77,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               },
               isLoading: (state is RegisterIsLoading) ? true : false,
               text: 'Register',
+              colorText: colorName.black,
+              textSize: 20,
+              color: colorName.primary,
             ).wFull(context);
           },
         ),

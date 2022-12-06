@@ -10,14 +10,14 @@ class HomeScreen extends StatelessWidget {
       const WalletView(),
       const QRView(),
       const NotificationView(),
-      const UserView()
+      const UserView(),
     ];
 
     return Scaffold(
       bottomNavigationBar: BlocBuilder<BottomNavBarCubit, BottomNavBarState>(
         builder: (context, state) {
           return BottomNavigationBar(
-            backgroundColor: colorName.white,
+              backgroundColor: colorName.white,
               type: BottomNavigationBarType.fixed,
               showUnselectedLabels: false,
               selectedItemColor: colorName.black,
