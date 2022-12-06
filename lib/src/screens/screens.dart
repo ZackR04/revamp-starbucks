@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,6 @@ import 'package:starbucks/src/widgets/widgets.dart';
 import 'package:starbucks/src/utilities/utilities.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
 
 part 'splash_screen.dart';
 part 'login_screen.dart';

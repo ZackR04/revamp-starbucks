@@ -63,60 +63,7 @@ class UserView extends StatelessWidget {
                       ],
                       crossAlignment: CrossAxisAlignment.center,
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(right: 50, left: 20, top: 90),
-                      child: SettingsGroup(iconItemSize: 25, items: [
-                        SettingsItem(
-                          icons: Icons.fingerprint,
-                          iconStyle: IconStyle(
-                            iconsColor: Colors.white,
-                            withBackground: true,
-                            backgroundColor: Colors.green,
-                          ),
-                          title: 'Privacy Settings',
-                          subtitle: 'Manage Your Privacy Settings',
-                          onTap: () {},
-                        )
-                      ]),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(right: 50, left: 20, top: 0.05),
-                      child: SettingsGroup(iconItemSize: 25, items: [
-                        SettingsItem(
-                          icons: Icons.info_rounded,
-                          iconStyle: IconStyle(
-                            iconsColor: Colors.white,
-                            withBackground: true,
-                            backgroundColor: Colors.blue,
-                          ),
-                          title: 'About',
-                          subtitle: 'Learn More About Starbucks App',
-                          onTap: () {},
-                        )
-                      ]),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(right: 50, left: 20, top: 0.05),
-                      child: SettingsGroup(iconItemSize: 25, items: [
-                        SettingsItem(
-                          icons: Icons.exit_to_app_rounded,
-                          iconStyle: IconStyle(
-                            iconsColor: Colors.white,
-                            withBackground: true,
-                            backgroundColor:
-                                const Color.fromARGB(255, 230, 42, 29),
-                          ),
-                          title: 'Logout',
-                          onTap: () {
-                            BlocProvider.of<UserBloc>(context)
-                                .add(LogOutUser());
-                          },
-                        )
-                      ]),
-                    ),
+                    _buildUserSettings(),
                     // ElevatedButton(
                     //     onPressed: () {
                     //       BlocProvider.of<UserBloc>(context).add(LogOutUser());
@@ -132,5 +79,103 @@ class UserView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildUserSettings() {
+    return Column(children: [
+      Padding(
+        padding: const EdgeInsets.only(right: 170),
+        child: TextButton.icon(
+          style: TextButton.styleFrom(
+            // textStyle: const TextStyle(color: Colors.white),
+            backgroundColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+          ),
+          onPressed: () {},
+          icon: const Icon(
+            Icons.fingerprint,
+            size: 50,
+            color: Colors.white,
+          ),
+          label: const Text(
+            'Privacy Settings',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+        ),
+      ),
+      13.heightBox,
+      Padding(
+        padding: const EdgeInsets.only(right: 190, left: 10),
+        child: TextButton.icon(
+          style: TextButton.styleFrom(
+            // textStyle: const TextStyle(color: Colors.white),
+            backgroundColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+          ),
+          onPressed: () {},
+          icon: const Icon(
+            Icons.help_center_outlined,
+            size: 50,
+            color: Colors.white,
+          ),
+          label: const Text(
+            'Help & Support',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+        ),
+      ),
+      13.heightBox,
+      Padding(
+        padding: const EdgeInsets.only(right: 260),
+        child: TextButton.icon(
+          style: TextButton.styleFrom(
+            // textStyle: const TextStyle(color: Colors.white),
+            backgroundColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+          ),
+          onPressed: () {},
+          icon: const Icon(
+            Icons.info_outline_rounded,
+            size: 50,
+            color: Colors.white,
+          ),
+          label: const Text(
+            'About',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+        ),
+      ),
+      13.heightBox,
+      Padding(
+        padding: const EdgeInsets.only(right: 240),
+        child: TextButton.icon(
+          style: TextButton.styleFrom(
+            // textStyle: const TextStyle(color: Colors.white),
+            backgroundColor: Colors.transparent,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+          ),
+          onPressed: () {
+            // BlocProvider.of<UserBloc>(context).add(LogOutUser());
+          },
+          icon: const Icon(
+            Icons.logout_outlined,
+            size: 50,
+            color: Colors.white,
+          ),
+          label: const Text(
+            'Logout',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+        ),
+      ),
+    ]);
   }
 }
