@@ -39,7 +39,6 @@ class CartScreen extends StatelessWidget {
           color: colorName.secondary,
         ),
       ]).pSymmetric(v: 4, h: 16),
-
     ]);
   }
 
@@ -143,7 +142,112 @@ class CartScreen extends StatelessWidget {
   }
 
   Widget _buildTotalPrice(BuildContext context) {
-    return BlocBuilder<ListCartBloc, ListCartState>(
+    return BlocBuilder<ListCartBloc, ListCartState>(builder: (context, state) {
+      if (state is ListCartIsSuccess) {
+        List tempList = <ProductModel>[];
+
+        double cartSubtotal() {
+          double total = 0;
+          for (var item in state.data) {
+            if (item.variant![0] == item.variant![0]) {
+              tempList.add(item);
+              total += item.price!;
+            }
+          }
+          return total;
+        }
+
+        double cartTax() {
+          double total = cartSubtotal() * 0.1;
+          return total;
+        }
+
+        double discount() {
+          double total = 0;
+          return total;
+        }
+
+        double cartTotalPrice() {
+          double total = 0;
+          total = cartSubtotal() + cartTax() - discount();
+          return total;
+        }
+
+        return Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: colorName.white,
+              boxShadow: [
+                BoxShadow(
+                  color: colorName.grey.withOpacity(0.2),
+                  spreadRadius: 1,
+                  blurRadius: 2,
+                  offset: const Offset(0, 3),
+                )
+              ]),
+          child: VStack([
+            HStack([
+              'Summary'.text.size(16).base.bold.make().expand(),
+              'Total ${state.data.length} items'.text.size(16).base.bold.make()
+            ]).px12(),
+            const Divider(
+              thickness: 0.5,
+              color: colorName.brown,
+            ),
+            HStack([
+              'Subtotal: '.text.make().expand(),
+              ''.richText.withTextSpanChildren([
+                Commons().setPriceToIDR(cartSubtotal()).textSpan.bold.make()
+              ]).make(),
+            ]).pSymmetric(h: 12, v: 4),
+            HStack([
+              'Tax 10%: '.text.make().expand(),
+              ''.richText.withTextSpanChildren([
+                Commons().setPriceToIDR(cartTax()).textSpan.bold.make()
+              ]).make(),
+            ]).pSymmetric(h: 12, v: 4),
+            HStack([
+              'Discount: '.text.color(colorName.secondary).make().expand(),
+              ''.richText.withTextSpanChildren([
+                Commons()
+                    .setPriceToIDR(discount())
+                    .textSpan
+                    .color(colorName.secondary)
+                    .make()
+              ]).make(),
+            ]).pSymmetric(h: 12, v: 4),
+            const Divider(
+              thickness: 1.0,
+              color: colorName.brown,
+            ).px12(),
+            HStack([
+              'Total'.text.size(16).bold.make().expand(),
+              ''.richText.withTextSpanChildren([
+                Commons()
+                    .setPriceToIDR(cartTotalPrice())
+                    .textSpan
+                    .size(16)
+                    .bold
+                    .make()
+              ]).make(),
+            ]).pSymmetric(h: 12, v: 4),
+            //List Cart
+          ]).py12(),
+        ).pSymmetric(h: 16, v: 8).w(context.screenWidth);
+      }
+      return 0.heightBox;
+    });
+  }
+
+  Widget _buildPayButton(BuildContext context) {
+    return BlocListener<OrderBloc, OrderState>(listener: (context, orderState) {
+      if (orderState is OrderIsSuccess) {
+        Commons().showSnackBar(context, orderState.message);
+      }
+      if (orderState is OrderIsFailed) {
+        Commons().showSnackBar(context, orderState.message);
+      }
+    }, child: BlocBuilder<ListCartBloc, ListCartState>(
       builder: (context, state) {
         if (state is ListCartIsSuccess) {
           List tempList = <ProductModel>[];
@@ -164,7 +268,7 @@ class CartScreen extends StatelessWidget {
             return total;
           }
 
-          double discount(){
+          double discount() {
             double total = 0;
             return total;
           }
@@ -175,147 +279,22 @@ class CartScreen extends StatelessWidget {
             return total;
           }
 
-          return
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: colorName.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: colorName.grey.withOpacity(0.2),
-                      spreadRadius: 1,
-                      blurRadius: 2,
-                      offset: const Offset(0, 3),
-                    )
-                  ]),
-              child: VStack(
-                  [
-                    HStack([
-                      'Summary'.text.size(16).base.bold.make().expand(),
-                      'Total ${state.data.length} items'.text.size(16).base.bold.make()
-                    ]).px12(),
-                    const Divider(
-                      thickness: 0.5,
-                      color: colorName.brown,
-                    ),
-                    HStack([
-                      'Subtotal: '.text.make().expand(),
-                      ''.richText.withTextSpanChildren([
-                        Commons()
-                            .setPriceToIDR(cartSubtotal())
-                            .textSpan
-                            .bold
-                            .make()
-                      ]).make(),
-                    ]).pSymmetric(h: 12, v: 4),
-                    HStack([
-                      'Tax 10%: '.text.make().expand(),
-                      ''.richText.withTextSpanChildren([
-                        Commons()
-                            .setPriceToIDR(cartTax())
-                            .textSpan
-                            .bold
-                            .make()
-                      ]).make(),
-                    ]).pSymmetric(h: 12, v: 4),
-                    HStack([
-                      'Discount: '.text.color(colorName.secondary).make().expand(),
-                      ''.richText.withTextSpanChildren([
-                        Commons()
-                            .setPriceToIDR(discount())
-                            .textSpan
-                            .color(colorName.secondary)
-                            .make()
-                      ]).make(),
-                    ]).pSymmetric(h: 12, v: 4),
-                    const Divider(
-                      thickness: 1.0,
-                      color: colorName.brown,
-                    ).px12(),
-                    HStack([
-                      'Total'.text.size(16).bold.make().expand(),
-                      ''.richText.withTextSpanChildren([
-                        Commons()
-                            .setPriceToIDR(cartTotalPrice())
-                            .textSpan
-                            .size(16)
-                            .bold
-                            .make()
-                      ]).make(),
-                    ]).pSymmetric(h: 12, v: 4),
-                    //List Cart
-                  ]).py12(),
-            ).pSymmetric(h: 16, v: 8).w(context.screenWidth);
+          return ButtonWidget(
+            color: colorName.secondary,
+            text: 'Pay',
+            textSize: 16,
+            isLoading: (state is OrderIsLoading) ? true : false,
+            onPressed: () {
+              BlocProvider.of<OrderBloc>(context)
+                  .add(OrderRequest(cartTotalPrice(), (state).data));
+            },
+          )
+              .w(context.screenWidth)
+              .h(context.percentHeight * 5)
+              .pSymmetric(h: 16, v: 8);
         }
         return 0.heightBox;
-      }
-    );
-  }
-
-  Widget _buildPayButton(BuildContext context) {
-    return BlocListener<OrderBloc, OrderState>(
-      listener: (context, orderState) {
-        if (orderState is OrderIsSuccess) {
-          Commons().showSnackBar(context, orderState.message);
-        }
-        if (orderState is OrderIsFailed) {
-          Commons().showSnackBar(context, orderState.message);
-        }
       },
-      child: BlocBuilder<ListCartBloc, ListCartState>(
-        builder: (context, state) {
-          if (state is ListCartIsSuccess) {
-            List tempList = <ProductModel>[];
-
-            double cartSubtotal() {
-              double total = 0;
-              for (var item in state.data) {
-                if (item.variant![0] == item.variant![0]) {
-                  tempList.add(item);
-                  total += item.price!;
-                }
-              }
-              return total;
-            }
-
-            double cartTax() {
-              double total = cartSubtotal() * 0.1;
-              return total;
-            }
-
-            double discount(){
-              double total = 0;
-              return total;
-            }
-
-            double cartTotalPrice() {
-              double total = 0;
-              total = cartSubtotal() + cartTax() - discount();
-              return total;
-            }
-
-            return ButtonWidget(
-              color: colorName.secondary,
-              text: 'Pay',
-              textSize: 16,
-              isLoading: (state is OrderIsLoading)
-                  ? true
-                  : false,
-              onPressed: () {
-                BlocProvider.of<OrderBloc>(context).add(
-                    OrderRequest(
-                        cartTotalPrice(),
-                        (state as ListCartIsSuccess).data
-                    ));
-              },
-            )
-                .w(context.screenWidth)
-                .h(context.percentHeight*5)
-                .pSymmetric(h: 16, v: 8);
-          }
-          return 0.heightBox;
-        },
-      )
-    );
+    ));
   }
 }

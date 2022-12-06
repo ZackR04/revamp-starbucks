@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:starbucks/src/models/models.dart';
@@ -5,7 +7,7 @@ import 'package:starbucks/src/models/models.dart';
 part 'checkbox_cart_state.dart';
 
 class CheckboxCartCubit extends Cubit<CheckboxCartState> {
-  CheckboxCartCubit() : super(CheckboxCartIsChecked([]));
+  CheckboxCartCubit() : super(CheckboxCartIsChecked(const []));
 
   void addCheckBox(ProductModel model) {
     final data = <ProductModel>[];
