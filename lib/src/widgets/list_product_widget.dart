@@ -26,7 +26,6 @@ class ListProductWidget extends StatelessWidget {
         12.widthBox,
         VStack([
           name!.text.maxLines(2).size(14).base.bold.make(),
-          id!.text.maxLines(2).size(14).base.bold.make(),
           4.heightBox,
           Commons().setPriceToIDR(price!).text.size(14).make(),
         ]).expand(),
