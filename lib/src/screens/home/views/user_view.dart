@@ -36,7 +36,7 @@ class UserView extends StatelessWidget {
                     ZStack(
                       [
                         VxCircle(
-                          radius: 120,
+                          radius: 100,
                           backgroundImage: (state.data.photoProfile!.isNotEmpty)
                               ? DecorationImage(
                                   image: NetworkImage(state.data.photoProfile!),
@@ -65,7 +65,7 @@ class UserView extends StatelessWidget {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsets.only(right: 50, left: 20, top: 50),
+                          const EdgeInsets.only(right: 50, left: 20, top: 90),
                       child: SettingsGroup(iconItemSize: 25, items: [
                         SettingsItem(
                           icons: Icons.fingerprint,
