@@ -63,7 +63,7 @@ class UserView extends StatelessWidget {
                       ],
                       crossAlignment: CrossAxisAlignment.center,
                     ),
-                    _buildUserSettings(),
+                    _buildUserSettings(context),
                     // ElevatedButton(
                     //     onPressed: () {
                     //       BlocProvider.of<UserBloc>(context).add(LogOutUser());
@@ -81,7 +81,7 @@ class UserView extends StatelessWidget {
     );
   }
 
-  Widget _buildUserSettings() {
+  Widget _buildUserSettings(BuildContext context) {
     return Column(children: [
       Padding(
         padding: const EdgeInsets.only(right: 170),
@@ -163,7 +163,7 @@ class UserView extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            // BlocProvider.of<UserBloc>(context).add(LogOutUser());
+            BlocProvider.of<UserBloc>(context).add(LogOutUser());
           },
           icon: const Icon(
             Icons.logout_outlined,
