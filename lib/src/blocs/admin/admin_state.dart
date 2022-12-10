@@ -21,3 +21,16 @@ class AdminIsFailed extends AdminState {
     required this.message,
   });
 }
+
+class AdminFetchCategory extends AdminState {
+  final List? listCategory;
+  final String? valDefault;
+
+  AdminFetchCategory({this.valDefault, this.listCategory});
+}
+
+class AdminChangeCategory extends AdminState {
+  final String? selectedCategory;
+
+  AdminChangeCategory({this.selectedCategory});
+}

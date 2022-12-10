@@ -17,3 +17,4 @@ part 'colors.dart';
 part 'constanta.dart';
 part 'commons.dart';
 part 'assets.dart';
+part 'icon_menu.dart';

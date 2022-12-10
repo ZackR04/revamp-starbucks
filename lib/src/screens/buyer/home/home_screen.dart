@@ -1,4 +1,4 @@
-part of '../screens.dart';
+part of '../../screens.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,8 +7,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> pages = [
       const DashboardView(),
-      const WalletView(),
-      const QRView(),
+      const WishlistView(),
+      const MenuView(),
       const NotificationView(),
       const UserView(),
     ];
@@ -39,17 +39,17 @@ class HomeScreen extends StatelessWidget {
                 ),
                 BottomNavigationBarItem(
                   icon: Image.asset(
-                    'assets/icons/wallet.png',
-                    scale: 24,
+                    'assets/icons/favourite.png',
+                    scale: 22,
                   ),
-                  label: 'Wallet',
+                  label: 'Favorite',
                 ),
                 BottomNavigationBarItem(
                   icon: Image.asset(
-                    'assets/icons/qr-code-scan.png',
-                    scale: 12,
+                    'assets/icons/menu.png',
+                    scale: 14,
                   ),
-                  label: 'QR Scan',
+                  label: 'Menu',
                 ),
                 BottomNavigationBarItem(
                   icon: Image.asset(

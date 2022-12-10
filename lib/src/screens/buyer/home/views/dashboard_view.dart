@@ -1,4 +1,4 @@
-part of '../../screens.dart';
+part of '../../../screens.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -33,11 +33,13 @@ class DashboardView extends StatelessWidget {
                       16.heightBox,
                       _buildSpecialMenu(),
                       16.heightBox,
-                      _buildLastPurchase(),
+                      _buildCoffee(),
                       16.heightBox,
-                      _buildRecommendation(),
+                      _buildNonCoffee(),
                       16.heightBox,
-                      _buildDrinks(),
+                      _buildMakanan(),
+                      16.heightBox,
+                      _buildLainlain(),
                     ],
                   ).py12(),
                 ]).scrollVertical();
@@ -220,17 +222,9 @@ class DashboardView extends StatelessWidget {
     ).px16();
   }
 
-  Widget _buildLastPurchase() {
+  Widget _buildCoffee() {
     return SectionWidget(
-      title: "Last Purchase",
-      routeName: routeName.menuPath,
-      child: Container(),
-    ).px16();
-  }
-
-  Widget _buildRecommendation() {
-    return SectionWidget(
-      title: "Recommended For You",
+      title: "Coffee",
       routeName: routeName.menuPath,
       child: BlocConsumer<ListProductBloc, ListProductState>(
         listener: (context, state) {
@@ -246,9 +240,10 @@ class DashboardView extends StatelessWidget {
             );
           }
           if (state is ListProductIsSuccess) {
-            //List Product Widget
 
-            return GridView.builder(
+            List<ProductModel> data = state.products.where((element) => element.category == 'Coffee').toList();
+            //List Product Widget
+            return data.isNotEmpty ? GridView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -257,6 +252,7 @@ class DashboardView extends StatelessWidget {
                 crossAxisSpacing: 0.1,
                 mainAxisSpacing: 0.1,
               ),
+              // itemCount: state.products.where((o) => o.category == 'Coffee').length,
               itemCount: state.products.length,
               itemBuilder: (context, index) {
                 return GridProductWidget(
@@ -267,7 +263,7 @@ class DashboardView extends StatelessWidget {
                 );
                 //_buildProductWidget(context, state.products[index]);
               },
-            ).box.height(135).make();
+            ).box.height(135).make() : 0.heightBox;
           }
           return 0.heightBox;
         },
@@ -275,9 +271,9 @@ class DashboardView extends StatelessWidget {
     ).px16();
   }
 
-  Widget _buildDrinks() {
+  Widget _buildNonCoffee() {
     return SectionWidget(
-      title: "Drinks",
+      title: "Non-Coffee",
       routeName: routeName.menuPath,
       child: BlocConsumer<ListProductBloc, ListProductState>(
         listener: (context, state) {
@@ -293,27 +289,125 @@ class DashboardView extends StatelessWidget {
             );
           }
           if (state is ListProductIsSuccess) {
-            //List Product Widget
 
-            return GridView.builder(
+            List<ProductModel> data = state.products.where((element) => element.category == 'Non-Coffee').toList();
+            //List Product Widget
+            return data.isNotEmpty ? GridView.builder(
               shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
+                crossAxisCount: 1,
                 childAspectRatio: 1 / 1,
-                crossAxisSpacing: 2,
-                mainAxisSpacing: 2,
+                crossAxisSpacing: 0.1,
+                mainAxisSpacing: 0.1,
               ),
-              itemCount: state.products.length,
+              itemCount: data.length,
               itemBuilder: (context, index) {
                 return GridProductWidget(
-                  pictures: state.products[index].pictures?.first,
-                  name: state.products[index].name,
-                  price: state.products[index].price,
-                  id: state.products[index].id,
+                  pictures: data[index].pictures?.first,
+                  name: data[index].name,
+                  price: data[index].price,
+                  id: data[index].id,
                 );
                 //_buildProductWidget(context, state.products[index]);
               },
+            ).box.height(135).make() : 0.heightBox;
+          }
+          return 0.heightBox;
+        },
+      ),
+    ).px16();
+  }
+
+  Widget _buildMakanan() {
+    return SectionWidget(
+      title: "Makanan",
+      routeName: routeName.menuPath,
+      child: BlocConsumer<ListProductBloc, ListProductState>(
+        listener: (context, state) {
+          if (state is ListProductIsFailed) {
+            Commons().showSnackBar(context, state.message);
+          }
+        },
+        builder: (context, state) {
+          if (state is ListProductIsLoading) {
+            //Loading Widget
+            return const CircularProgressIndicator(
+              color: colorName.secondary,
             );
+          }
+          if (state is ListProductIsSuccess) {
+
+            List<ProductModel> data = state.products.where((element) => element.category == 'Makanan').toList();
+            //List Product Widget
+            return data.isNotEmpty ? GridView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1,
+                childAspectRatio: 1 / 1,
+                crossAxisSpacing: 0.1,
+                mainAxisSpacing: 0.1,
+              ),
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                return GridProductWidget(
+                  pictures: data[index].pictures?.first,
+                  name: data[index].name,
+                  price: data[index].price,
+                  id: data[index].id,
+                );
+                //_buildProductWidget(context, state.products[index]);
+              },
+            ).box.height(135).make() : 0.heightBox;
+          }
+          return 0.heightBox;
+        },
+      ),
+    ).px16();
+  }
+
+  Widget _buildLainlain() {
+    return SectionWidget(
+      title: "Lain-lain",
+      routeName: routeName.menuPath,
+      child: BlocConsumer<ListProductBloc, ListProductState>(
+        listener: (context, state) {
+          if (state is ListProductIsFailed) {
+            Commons().showSnackBar(context, state.message);
+          }
+        },
+        builder: (context, state) {
+          if (state is ListProductIsLoading) {
+            //Loading Widget
+            return const CircularProgressIndicator(
+              color: colorName.secondary,
+            );
+          }
+          if (state is ListProductIsSuccess) {
+            List<ProductModel> data = state.products.where((element) => element.category == 'Lain-lain').toList();
+
+            //List Product Widget
+            return data.isNotEmpty ? GridView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1,
+                childAspectRatio: 1 / 1,
+                crossAxisSpacing: 0.1,
+                mainAxisSpacing: 0.1,
+              ),
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                return GridProductWidget(
+                  pictures: data[index].pictures?.first,
+                  name: data[index].name,
+                  price: data[index].price,
+                  id: data[index].id,
+                );
+                //_buildProductWidget(context, state.products[index]);
+              },
+            ).box.height(135).make() : 0.heightBox;
           }
           return 0.heightBox;
         },

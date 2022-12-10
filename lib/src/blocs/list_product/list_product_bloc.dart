@@ -15,7 +15,9 @@ class ListProductBloc extends Bloc<ListProductEvent, ListProductState> {
       final result = await ProductService().fetchListProduct();
 
       emit(result.fold((l) => ListProductIsFailed(message: l),
-          (r) => ListProductIsSuccess(products: r)));
+          (r) => ListProductIsSuccess(
+              products: r)
+      ));
     });
   }
 }

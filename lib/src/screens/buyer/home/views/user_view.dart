@@ -1,4 +1,4 @@
-part of '../../screens.dart';
+part of '../../../screens.dart';
 
 class UserView extends StatelessWidget {
   const UserView({super.key});

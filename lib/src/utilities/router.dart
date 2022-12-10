@@ -63,18 +63,6 @@ final GoRouter router = GoRouter(initialLocation: routeName.splash, routes: [
       },
       routes: [
         GoRoute(
-          path: routeName.menu,
-          builder: (context, state) {
-            return const MenuScreen();
-          },
-        ),
-        GoRoute(
-          path: routeName.wishlist,
-          builder: (context, state) {
-            return const WishlistScreen();
-          },
-        ),
-        GoRoute(
           path: routeName.cart,
           builder: (context, state) {
             BlocProvider.of<ListCartBloc>(context).add(FetchListCart());

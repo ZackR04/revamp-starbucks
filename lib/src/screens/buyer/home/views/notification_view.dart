@@ -1,4 +1,4 @@
-part of '../../screens.dart';
+part of '../../../screens.dart';
 
 class NotificationView extends StatelessWidget {
   const NotificationView({super.key});

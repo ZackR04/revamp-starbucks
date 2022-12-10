@@ -1,4 +1,4 @@
-part of 'screens.dart';
+part of '../screens.dart';
 
 class DetailProductScreen extends StatelessWidget {
   const DetailProductScreen({super.key});

@@ -19,7 +19,7 @@ class GridProductWidget extends StatelessWidget {
     return VStack(
       [
         VxCircle(
-            radius: 100,
+            radius: 85,
             backgroundImage: DecorationImage(
                 image: NetworkImage(pictures!), fit: BoxFit.cover)
             // child: AspectRatio(

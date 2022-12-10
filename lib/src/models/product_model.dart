@@ -8,6 +8,7 @@ class ProductModel {
   final double? price;
   final List<String>? pictures;
   final String? desc;
+  final String? category;
   final List<String>? variant;
 
   ProductModel({
@@ -17,6 +18,7 @@ class ProductModel {
     this.price,
     this.pictures,
     this.desc,
+    this.category,
     this.variant,
   });
 
@@ -27,6 +29,7 @@ class ProductModel {
     double? price,
     List<String>? pictures,
     String? desc,
+    String? category,
     List<String>? variant,
   }) {
     return ProductModel(
@@ -36,6 +39,7 @@ class ProductModel {
       price: price ?? this.price,
       pictures: pictures ?? this.pictures,
       desc: desc ?? this.desc,
+      category: category ?? this.category,
       variant: variant ?? this.variant,
     );
   }
@@ -48,6 +52,7 @@ class ProductModel {
       'price': price,
       'pictures': pictures,
       'desc': desc,
+      'category': category,
       'variant': variant,
     };
   }
@@ -62,6 +67,7 @@ class ProductModel {
       price: map['price'] != null ? map['price'] as double : null,
       pictures: map['pictures'] != null ? List.from(map['pictures']) : [],
       desc: map['desc'] != null ? map['desc'] as String : null,
+      category: map['category'] != null ? map['category'] as String : null,
       variant: map['variant'] != null ? List.from(map['variant']) : [],
     );
   }

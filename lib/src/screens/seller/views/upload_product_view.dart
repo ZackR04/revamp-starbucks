@@ -1,4 +1,4 @@
-part of 'screens.dart';
+part of '../../screens.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({super.key});
@@ -38,6 +38,8 @@ class _AdminScreenState extends State<AdminScreen> {
           title: 'Tambah Produk'.text.make(),
         ),
         body: BlocConsumer<AdminBloc, AdminState>(
+          bloc: BlocProvider.of<AdminBloc>(
+              context)..add(AdminFetchListCategory()),
           listener: (context, state) {
             if (state is AdminIsSuccess) {
               reset();
@@ -48,13 +50,14 @@ class _AdminScreenState extends State<AdminScreen> {
           },
           builder: (context, state) {
             return VStack([
-              _buildProductForm(),
+              _buildProductForm(state),
               ButtonWidget(
                 onPressed: () {
                   BlocProvider.of<AdminBloc>(context).add(AddProduct(
                     name: productNameController.text,
                     price: double.parse(productPriceController.text),
                     desc: productDescController.text,
+                    category: (state as AdminFetchCategory).valDefault,
                     variants: productVariantsController.text,
                   ));
                 },
@@ -68,7 +71,7 @@ class _AdminScreenState extends State<AdminScreen> {
     );
   }
 
-  Widget _buildProductForm() {
+  Widget _buildProductForm(AdminState state) {
     return VStack([
       TextFieldWidget(
         controller: productNameController,
@@ -90,6 +93,21 @@ class _AdminScreenState extends State<AdminScreen> {
         controller: productVariantsController,
         title: 'Variant Produk',
       ),
+      8.heightBox,
+      state is AdminFetchCategory ?
+      DropdownButton(
+        hint: Text('Kategori'),
+        value: state.valDefault,
+        items: state.listCategory?.map((value) {
+          return DropdownMenuItem(
+              child: Text(value), value: value
+          );
+        }).toList(),
+        onChanged: (hasil) {
+          BlocProvider.of<AdminBloc>(
+              context).add(AdminFetchListCategory(selectedCategory: '$hasil'));
+        },
+      ) : 0.heightBox,
       8.heightBox,
       BlocBuilder<ProductPictureCubit, ProductPictureState>(
         builder: (context, state) {

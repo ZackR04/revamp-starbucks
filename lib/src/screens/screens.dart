@@ -12,19 +12,24 @@ import 'package:starbucks/src/utilities/utilities.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+//
 part 'splash_screen.dart';
 part 'login_screen.dart';
 part 'register_screen.dart';
-part 'home/home_screen.dart';
-part 'admin_screen.dart';
-part 'detailproduct_screen.dart';
-part 'cart_screen.dart';
 part 'cart_screen1.dart';
-part 'wishlist_screen.dart';
-part 'menu_screen.dart';
-part 'voucher_screen.dart';
-part 'home/views/dashboard_view.dart';
-part 'home/views/wallet_view.dart';
-part 'home/views/qr_view.dart';
-part 'home/views/notification_view.dart';
-part 'home/views/user_view.dart';
+//
+part 'buyer/cart_screen.dart';
+part 'buyer/detailproduct_screen.dart';
+part 'buyer/voucher_screen.dart';
+//
+part 'buyer/home/home_screen.dart';
+part 'buyer/home/views/dashboard_view.dart';
+part 'buyer/home/views/menu_view.dart';
+part 'buyer/home/views/notification_view.dart';
+part 'buyer/home/views/user_view.dart';
+part 'buyer/home/views/wishlist_view.dart';
+//
+part 'seller/views/upload_product_view.dart';
+
+
+

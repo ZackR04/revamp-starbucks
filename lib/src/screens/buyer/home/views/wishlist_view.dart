@@ -1,7 +1,7 @@
-part of 'screens.dart';
+part of '../../../screens.dart';
 
-class WishlistScreen extends StatelessWidget {
-  const WishlistScreen({super.key});
+class WishlistView extends StatelessWidget {
+  const WishlistView({super.key});
 
   @override
   Widget build(BuildContext context) {

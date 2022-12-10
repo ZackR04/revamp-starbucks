@@ -2,6 +2,7 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:starbucks/src/blocs/blocs.dart';
 import 'package:starbucks/src/cubits/cubits.dart';
 import 'package:starbucks/src/models/models.dart';
 import 'package:starbucks/src/services/services.dart';
@@ -20,6 +21,7 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
         name: event.name,
         price: event.price,
         desc: event.desc,
+        category: event.category,
         variant: event.variants!.split(', '),
       );
 
@@ -31,5 +33,19 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
       result.fold((l) => emit(AdminIsFailed(message: l)),
           (r) => emit(AdminIsSuccess(message: r)));
     });
+
+    on<AdminFetchListCategory>((event, emit) async {
+      List _listKategori = <String>
+      [
+        "Lain-lain",
+        "Makanan",
+        "Coffee",
+        "Non-Coffee",
+      ];
+
+      emit(AdminFetchCategory(listCategory: _listKategori, valDefault: event.selectedCategory ?? "Lain-lain"));
+    });
+
+    on<ChangeCategory>((event, emit) => emit(AdminChangeCategory(selectedCategory: event.value)));
   }
 }
