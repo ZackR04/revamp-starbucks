@@ -6,12 +6,12 @@ class UserView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
-          image: const AssetImage('assets/images/bg 7.jpg'),
+          image: AssetImage('assets/images/bg 7.jpg'),
           fit: BoxFit.cover,
-          colorFilter:
-              ColorFilter.mode(Colors.amber.withOpacity(0.15), BlendMode.color),
+          // colorFilter:
+          //     ColorFilter.mode(Colors.amber.withOpacity(0.15), BlendMode.color),
         ),
       ),
       child: Scaffold(
@@ -86,7 +86,7 @@ class UserView extends StatelessWidget {
   Widget _buildUserSettings(BuildContext context) {
     return Column(children: [
       Padding(
-        padding: const EdgeInsets.only(right: 170),
+        padding: const EdgeInsets.only(right: 160),
         child: TextButton.icon(
           style: TextButton.styleFrom(
             // textStyle: const TextStyle(color: Colors.white),
@@ -97,12 +97,12 @@ class UserView extends StatelessWidget {
           ),
           onPressed: () {},
           icon: const Icon(
-            Icons.fingerprint,
+            Icons.account_circle_outlined,
             size: 50,
             color: Colors.black,
           ),
           label: const Text(
-            'Privacy Settings',
+            'Account Settings',
             style: TextStyle(color: Colors.black, fontSize: 20),
           ),
         ),
