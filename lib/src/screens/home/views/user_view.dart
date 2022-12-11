@@ -7,18 +7,20 @@ class UserView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          image: DecorationImage(
-              image: const AssetImage('assets/images/bg starbucks 2.jpeg'),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.15), BlendMode.darken))),
+        image: DecorationImage(
+          image: const AssetImage('assets/images/bg 7.jpg'),
+          fit: BoxFit.cover,
+          colorFilter:
+              ColorFilter.mode(Colors.amber.withOpacity(0.15), BlendMode.color),
+        ),
+      ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           title: const Text(
-            'User Settings',
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            'Settings',
+            style: TextStyle(color: Colors.black, fontSize: 20),
           ),
           centerTitle: true,
         ),
@@ -36,7 +38,7 @@ class UserView extends StatelessWidget {
                     ZStack(
                       [
                         VxCircle(
-                          radius: 100,
+                          radius: 90,
                           backgroundImage: (state.data.photoProfile!.isNotEmpty)
                               ? DecorationImage(
                                   image: NetworkImage(state.data.photoProfile!),
@@ -46,7 +48,7 @@ class UserView extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () {},
-                          color: colorName.white,
+                          color: colorName.black,
                           icon: const Icon(Icons.photo_camera).onTap(() {
                             BlocProvider.of<UserBloc>(context)
                                 .add(ChangePhoto());
@@ -58,8 +60,8 @@ class UserView extends StatelessWidget {
                     16.heightBox,
                     VStack(
                       [
-                        state.data.username!.text.white.size(22).bold.make(),
-                        state.data.email!.text.white.size(18).make(),
+                        state.data.username!.text.black.size(22).bold.make(),
+                        state.data.email!.text.black.size(18).make(),
                       ],
                       crossAlignment: CrossAxisAlignment.center,
                     ),
@@ -97,11 +99,11 @@ class UserView extends StatelessWidget {
           icon: const Icon(
             Icons.fingerprint,
             size: 50,
-            color: Colors.white,
+            color: Colors.black,
           ),
           label: const Text(
             'Privacy Settings',
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: Colors.black, fontSize: 20),
           ),
         ),
       ),
@@ -120,11 +122,11 @@ class UserView extends StatelessWidget {
           icon: const Icon(
             Icons.help_center_outlined,
             size: 50,
-            color: Colors.white,
+            color: Colors.black,
           ),
           label: const Text(
             'Help & Support',
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: Colors.black, fontSize: 20),
           ),
         ),
       ),
@@ -143,11 +145,11 @@ class UserView extends StatelessWidget {
           icon: const Icon(
             Icons.info_outline_rounded,
             size: 50,
-            color: Colors.white,
+            color: Colors.black,
           ),
           label: const Text(
             'About',
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: Colors.black, fontSize: 20),
           ),
         ),
       ),
@@ -168,11 +170,11 @@ class UserView extends StatelessWidget {
           icon: const Icon(
             Icons.logout_outlined,
             size: 50,
-            color: Colors.white,
+            color: Colors.black,
           ),
           label: const Text(
             'Logout',
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: Colors.black, fontSize: 20),
           ),
         ),
       ),
