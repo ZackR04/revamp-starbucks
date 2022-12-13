@@ -17,6 +17,7 @@ part 'splash_screen.dart';
 part 'login_screen.dart';
 part 'register_screen.dart';
 part 'cart_screen1.dart';
+part 'main_home.dart';
 //
 part 'buyer/cart_screen.dart';
 part 'buyer/detailproduct_screen.dart';
@@ -29,7 +30,12 @@ part 'buyer/home/views/notification_view.dart';
 part 'buyer/home/views/user_view.dart';
 part 'buyer/home/views/wishlist_view.dart';
 //
+part 'seller/home_seller_screen.dart';
+part 'seller/edit_product.dart';
+part 'seller/views/dashboard_seller_view.dart';
 part 'seller/views/upload_product_view.dart';
+part 'seller/views/order_status_view.dart';
+part 'seller/views/user_settings_view.dart';
 
 
 

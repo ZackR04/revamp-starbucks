@@ -34,7 +34,9 @@ class _AdminScreenState extends State<AdminScreen> {
         return Future.value(true);
       },
       child: Scaffold(
+        backgroundColor: colorName.primary,
         appBar: AppBar(
+          backgroundColor: colorName.secondary,
           title: 'Tambah Produk'.text.make(),
         ),
         body: BlocConsumer<AdminBloc, AdminState>(
@@ -93,21 +95,32 @@ class _AdminScreenState extends State<AdminScreen> {
         controller: productVariantsController,
         title: 'Variant Produk',
       ),
-      8.heightBox,
-      state is AdminFetchCategory ?
-      DropdownButton(
-        hint: Text('Kategori'),
-        value: state.valDefault,
-        items: state.listCategory?.map((value) {
-          return DropdownMenuItem(
-              child: Text(value), value: value
-          );
-        }).toList(),
-        onChanged: (hasil) {
-          BlocProvider.of<AdminBloc>(
-              context).add(AdminFetchListCategory(selectedCategory: '$hasil'));
-        },
-      ) : 0.heightBox,
+      12.heightBox,
+      ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: VStack([
+          'Kategori Produk'.text.size(16).color(colorName.black.withOpacity(0.85)).make().pOnly(top: 10, left: 4),
+          state is AdminFetchCategory ?
+          DropdownButton(
+            hint: Text('Kategori'),
+            value: state.valDefault,
+            items: state.listCategory?.map((value) {
+              return DropdownMenuItem(
+                  child: Text(value), value: value
+              );
+            }).toList(),
+            onChanged: (hasil) {
+              BlocProvider.of<AdminBloc>(
+                  context).add(AdminFetchListCategory(selectedCategory: '$hasil'));
+            },
+          ).px4() : 0.heightBox,
+        ])
+            .box
+            .width(context.screenWidth)
+            .color(colorName.white)
+            .px8
+            .make(),
+      ),
       8.heightBox,
       BlocBuilder<ProductPictureCubit, ProductPictureState>(
         builder: (context, state) {

@@ -59,7 +59,12 @@ class _LoginScreenState extends State<LoginScreen>
           if (state is LoginIsFailed) {
             Commons().showSnackBar(context, state.message);
           } else if (state is LoginIsSuccess) {
-            context.go(routeName.home);
+            context.go(routeName.mainHome);
+            // if (state.admin!) {
+            //   context.go(routeName.homeAdmin);
+            // } else {
+            //   context.go(routeName.home);
+            // }
           }
         },
         child: AnimatedBuilder(

@@ -15,4 +15,8 @@ class LoginIsFailed extends LoginState {
   });
 }
 
-class LoginIsSuccess extends LoginState {}
+class LoginIsSuccess extends LoginState {
+  final bool? admin;
+
+  LoginIsSuccess({this.admin});
+}

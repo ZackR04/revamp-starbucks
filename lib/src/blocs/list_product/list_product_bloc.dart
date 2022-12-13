@@ -13,7 +13,6 @@ class ListProductBloc extends Bloc<ListProductEvent, ListProductState> {
     on<FetchListProduct>((event, emit) async {
       emit(ListProductIsLoading());
       final result = await ProductService().fetchListProduct();
-
       emit(result.fold((l) => ListProductIsFailed(message: l),
           (r) => ListProductIsSuccess(
               products: r)

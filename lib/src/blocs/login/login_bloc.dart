@@ -19,7 +19,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           (l) => LoginIsFailed(message: l),
           (r) {
             Commons().setUID(r.uid!);
-            return LoginIsSuccess();
+            return LoginIsSuccess(
+              admin: r.admin
+            );
           },
         ),
       );

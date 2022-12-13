@@ -37,13 +37,13 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
     on<AdminFetchListCategory>((event, emit) async {
       List _listKategori = <String>
       [
-        "Lain-lain",
-        "Makanan",
         "Coffee",
+        "Makanan",
         "Non-Coffee",
+        "Lain-lain",
       ];
 
-      emit(AdminFetchCategory(listCategory: _listKategori, valDefault: event.selectedCategory ?? "Lain-lain"));
+      emit(AdminFetchCategory(listCategory: _listKategori, valDefault: event.selectedCategory ?? "Coffee"));
     });
 
     on<ChangeCategory>((event, emit) => emit(AdminChangeCategory(selectedCategory: event.value)));
