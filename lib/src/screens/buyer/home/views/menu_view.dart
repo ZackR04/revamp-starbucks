@@ -53,6 +53,7 @@ class _MenuViewState extends State<MenuView> {
     ).pSymmetric(h: 12).pOnly(top: 40, bottom: 8);
   }
 
+  // ignore: unused_element
   Widget _buildCategory() {
     return BlocBuilder<AdminBloc, AdminState>(
       bloc: BlocProvider.of<AdminBloc>(context)..add(AdminFetchListCategory()),
@@ -89,6 +90,7 @@ class _MenuViewState extends State<MenuView> {
     );
   }
 
+  // ignore: unused_element
   Widget _buildListMenu() {
     return VStack([
       'Minuman'.text.bold.size(16).base.make().px8(),

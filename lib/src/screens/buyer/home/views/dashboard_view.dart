@@ -77,6 +77,7 @@ class DashboardView extends StatelessWidget {
     ).px20();
   }
 
+  // ignore: unused_element
   Widget _buildMenuButton(BuildContext context) {
     return Container(
       decoration: BoxDecoration(

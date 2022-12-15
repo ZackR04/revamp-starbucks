@@ -2,7 +2,6 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:starbucks/src/blocs/blocs.dart';
 import 'package:starbucks/src/cubits/cubits.dart';
 import 'package:starbucks/src/models/models.dart';
 import 'package:starbucks/src/services/services.dart';
@@ -35,17 +34,20 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
     });
 
     on<AdminFetchListCategory>((event, emit) async {
-      List _listKategori = <String>
-      [
+      // ignore: no_leading_underscores_for_local_identifiers
+      List _listKategori = <String>[
         "Coffee",
         "Non-Coffee",
         "Makanan",
         "Lain-lain",
       ];
 
-      emit(AdminFetchCategory(listCategory: _listKategori, valDefault: event.selectedCategory ?? "Coffee"));
+      emit(AdminFetchCategory(
+          listCategory: _listKategori,
+          valDefault: event.selectedCategory ?? "Coffee"));
     });
 
-    on<ChangeCategory>((event, emit) => emit(AdminChangeCategory(selectedCategory: event.value)));
+    on<ChangeCategory>((event, emit) =>
+        emit(AdminChangeCategory(selectedCategory: event.value)));
   }
 }

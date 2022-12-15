@@ -1,4 +1,4 @@
-import 'dart:async';
+// ignore_for_file: depend_on_referenced_packages
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -13,7 +13,8 @@ class DetailOrderBloc extends Bloc<DetailOrderEvent, DetailOrderState> {
     on<FetchDetailOrder>((event, emit) async {
       emit(DetailOrderIsLoading());
       final result = await OrderService().fetchDetailOrder(event.docID);
-      emit(result.fold((l) => DetailOrderIsFailed(message: l), (r) => DetailOrderIsSuccess(model: r)));
+      emit(result.fold((l) => DetailOrderIsFailed(message: l),
+          (r) => DetailOrderIsSuccess(model: r)));
     });
   }
 }

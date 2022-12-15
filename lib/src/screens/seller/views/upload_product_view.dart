@@ -40,8 +40,8 @@ class _AdminScreenState extends State<AdminScreen> {
           title: 'Tambah Produk'.text.make(),
         ),
         body: BlocConsumer<AdminBloc, AdminState>(
-          bloc: BlocProvider.of<AdminBloc>(
-              context)..add(AdminFetchListCategory()),
+          bloc: BlocProvider.of<AdminBloc>(context)
+            ..add(AdminFetchListCategory()),
           listener: (context, state) {
             if (state is AdminIsSuccess) {
               reset();
@@ -99,27 +99,27 @@ class _AdminScreenState extends State<AdminScreen> {
       ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: VStack([
-          'Kategori Produk'.text.size(16).color(colorName.black.withOpacity(0.85)).make().pOnly(top: 10, left: 4),
-          state is AdminFetchCategory ?
-          DropdownButton(
-            hint: Text('Kategori'),
-            value: state.valDefault,
-            items: state.listCategory?.map((value) {
-              return DropdownMenuItem(
-                  child: Text(value), value: value
-              );
-            }).toList(),
-            onChanged: (hasil) {
-              BlocProvider.of<AdminBloc>(
-                  context).add(AdminFetchListCategory(selectedCategory: '$hasil'));
-            },
-          ).px4() : 0.heightBox,
-        ])
-            .box
-            .width(context.screenWidth)
-            .color(colorName.white)
-            .px8
-            .make(),
+          'Kategori Produk'
+              .text
+              .size(16)
+              .color(colorName.black.withOpacity(0.85))
+              .make()
+              .pOnly(top: 10, left: 4),
+          state is AdminFetchCategory
+              ? DropdownButton(
+                  hint: const Text('Kategori'),
+                  value: state.valDefault,
+                  items: state.listCategory?.map((value) {
+                    // ignore: sort_child_properties_last
+                    return DropdownMenuItem(child: Text(value), value: value);
+                  }).toList(),
+                  onChanged: (hasil) {
+                    BlocProvider.of<AdminBloc>(context).add(
+                        AdminFetchListCategory(selectedCategory: '$hasil'));
+                  },
+                ).px4()
+              : 0.heightBox,
+        ]).box.width(context.screenWidth).color(colorName.white).px8.make(),
       ),
       8.heightBox,
       BlocBuilder<ProductPictureCubit, ProductPictureState>(
