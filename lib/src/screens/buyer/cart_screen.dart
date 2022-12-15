@@ -279,18 +279,28 @@ class CartScreen extends StatelessWidget {
             return total;
           }
 
-          return ButtonWidget(
-            color: colorName.secondary,
-            text: 'Pay',
-            textSize: 16,
-            isLoading: (state is OrderIsLoading) ? true : false,
-            onPressed: () {
-              BlocProvider.of<OrderBloc>(context)
-                  .add(OrderRequest(cartTotalPrice(), (state).data));
+          return BlocConsumer<OrderBloc, OrderState>(
+            listener: (context, orderState) {
+              if (orderState is OrderIsSuccess) {
+                BlocProvider.of<DetailOrderBloc>(context)
+                    .add(FetchDetailOrder(docID: orderState.id));
+                context.go(routeName.payPath);
+              }
+            },
+            builder: (context, orderState) {
+              return ButtonWidget(
+                color: colorName.secondary,
+                text: 'Pay',
+                textSize: 16,
+                isLoading: (orderState is OrderIsLoading) ? true : false,
+                onPressed: () {
+                  BlocProvider.of<OrderBloc>(context)
+                      .add(OrderRequest(cartTotalPrice(), (state).data));
+                },
+              );
             },
           )
-              .w(context.screenWidth)
-              .h(context.percentHeight * 5)
+              .wh(context.screenWidth, context.percentHeight * 5)
               .pSymmetric(h: 16, v: 8);
         }
         return 0.heightBox;

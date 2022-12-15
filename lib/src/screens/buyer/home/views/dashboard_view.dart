@@ -27,8 +27,8 @@ class DashboardView extends StatelessWidget {
                     [
                       _buildAppBar(context, state.data),
                       16.heightBox,
-                      _buildMenuButton(context),
-                      12.heightBox,
+                      // _buildMenuButton(context),
+                      // 12.heightBox,
                       _buildPromotion(context),
                       16.heightBox,
                       _buildSpecialMenu(),
@@ -240,30 +240,34 @@ class DashboardView extends StatelessWidget {
             );
           }
           if (state is ListProductIsSuccess) {
-
-            List<ProductModel> data = state.products.where((element) => element.category == 'Coffee').toList();
+            List<ProductModel> data = state.products
+                .where((element) => element.category == 'Coffee')
+                .toList();
             //List Product Widget
-            return data.isNotEmpty ? GridView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                childAspectRatio: 1 / 1,
-                crossAxisSpacing: 0.1,
-                mainAxisSpacing: 0.1,
-              ),
-              // itemCount: state.products.where((o) => o.category == 'Coffee').length,
-              itemCount: state.products.length,
-              itemBuilder: (context, index) {
-                return GridProductWidget(
-                  pictures: state.products[index].pictures?.first,
-                  name: state.products[index].name,
-                  price: state.products[index].price,
-                  id: state.products[index].id,
-                );
-                //_buildProductWidget(context, state.products[index]);
-              },
-            ).box.height(135).make() : 0.heightBox;
+            return data.isNotEmpty
+                ? GridView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      childAspectRatio: 1 / 1,
+                      crossAxisSpacing: 0.1,
+                      mainAxisSpacing: 0.1,
+                    ),
+                    // itemCount: state.products.where((o) => o.category == 'Coffee').length,
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      return GridProductWidget(
+                        pictures: data[index].pictures?.first,
+                        name: data[index].name,
+                        price: data[index].price,
+                        id: data[index].id,
+                      );
+                      //_buildProductWidget(context, state.products[index]);
+                    },
+                  ).box.height(135).make()
+                : 0.heightBox;
           }
           return 0.heightBox;
         },
@@ -289,29 +293,33 @@ class DashboardView extends StatelessWidget {
             );
           }
           if (state is ListProductIsSuccess) {
-
-            List<ProductModel> data = state.products.where((element) => element.category == 'Non-Coffee').toList();
+            List<ProductModel> data = state.products
+                .where((element) => element.category == 'Non-Coffee')
+                .toList();
             //List Product Widget
-            return data.isNotEmpty ? GridView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                childAspectRatio: 1 / 1,
-                crossAxisSpacing: 0.1,
-                mainAxisSpacing: 0.1,
-              ),
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                return GridProductWidget(
-                  pictures: data[index].pictures?.first,
-                  name: data[index].name,
-                  price: data[index].price,
-                  id: data[index].id,
-                );
-                //_buildProductWidget(context, state.products[index]);
-              },
-            ).box.height(135).make() : 0.heightBox;
+            return data.isNotEmpty
+                ? GridView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      childAspectRatio: 1 / 1,
+                      crossAxisSpacing: 0.1,
+                      mainAxisSpacing: 0.1,
+                    ),
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      return GridProductWidget(
+                        pictures: data[index].pictures?.first,
+                        name: data[index].name,
+                        price: data[index].price,
+                        id: data[index].id,
+                      );
+                      //_buildProductWidget(context, state.products[index]);
+                    },
+                  ).box.height(135).make()
+                : 0.heightBox;
           }
           return 0.heightBox;
         },
@@ -337,29 +345,33 @@ class DashboardView extends StatelessWidget {
             );
           }
           if (state is ListProductIsSuccess) {
-
-            List<ProductModel> data = state.products.where((element) => element.category == 'Makanan').toList();
+            List<ProductModel> data = state.products
+                .where((element) => element.category == 'Makanan')
+                .toList();
             //List Product Widget
-            return data.isNotEmpty ? GridView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                childAspectRatio: 1 / 1,
-                crossAxisSpacing: 0.1,
-                mainAxisSpacing: 0.1,
-              ),
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                return GridProductWidget(
-                  pictures: data[index].pictures?.first,
-                  name: data[index].name,
-                  price: data[index].price,
-                  id: data[index].id,
-                );
-                //_buildProductWidget(context, state.products[index]);
-              },
-            ).box.height(135).make() : 0.heightBox;
+            return data.isNotEmpty
+                ? GridView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      childAspectRatio: 1 / 1,
+                      crossAxisSpacing: 0.1,
+                      mainAxisSpacing: 0.1,
+                    ),
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      return GridProductWidget(
+                        pictures: data[index].pictures?.first,
+                        name: data[index].name,
+                        price: data[index].price,
+                        id: data[index].id,
+                      );
+                      //_buildProductWidget(context, state.products[index]);
+                    },
+                  ).box.height(135).make()
+                : 0.heightBox;
           }
           return 0.heightBox;
         },
@@ -385,29 +397,34 @@ class DashboardView extends StatelessWidget {
             );
           }
           if (state is ListProductIsSuccess) {
-            List<ProductModel> data = state.products.where((element) => element.category == 'Lain-lain').toList();
+            List<ProductModel> data = state.products
+                .where((element) => element.category == 'Lain-lain')
+                .toList();
 
             //List Product Widget
-            return data.isNotEmpty ? GridView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                childAspectRatio: 1 / 1,
-                crossAxisSpacing: 0.1,
-                mainAxisSpacing: 0.1,
-              ),
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                return GridProductWidget(
-                  pictures: data[index].pictures?.first,
-                  name: data[index].name,
-                  price: data[index].price,
-                  id: data[index].id,
-                );
-                //_buildProductWidget(context, state.products[index]);
-              },
-            ).box.height(135).make() : 0.heightBox;
+            return data.isNotEmpty
+                ? GridView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      childAspectRatio: 1 / 1,
+                      crossAxisSpacing: 0.1,
+                      mainAxisSpacing: 0.1,
+                    ),
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      return GridProductWidget(
+                        pictures: data[index].pictures?.first,
+                        name: data[index].name,
+                        price: data[index].price,
+                        id: data[index].id,
+                      );
+                      //_buildProductWidget(context, state.products[index]);
+                    },
+                  ).box.height(135).make()
+                : 0.heightBox;
           }
           return 0.heightBox;
         },

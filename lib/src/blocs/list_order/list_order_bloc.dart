@@ -16,5 +16,12 @@ class ListOrderBloc extends Bloc<ListOrderEvent, ListOrderState> {
       emit(result.fold(
           (l) => ListOrderIsFailed(l), (r) => ListOrderIsSuccess(r)));
     });
+
+    on<FetchListOrderbyAdmin>((event, emit) async {
+      emit(ListOrderIsLoading());
+      final result = await OrderService().fetchListOrderbyAdmin();
+      emit(result.fold(
+          (l) => ListOrderIsFailed(l), (r) => ListOrderIsSuccess(r)));
+    });
   }
 }

@@ -18,15 +18,11 @@ class GridProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return VStack(
       [
-        VxCircle(
-            radius: 85,
-            backgroundImage: DecorationImage(
-                image: NetworkImage(pictures!), fit: BoxFit.cover)
-            // child: AspectRatio(
-            //   aspectRatio: 16 / 10,
-
-            // ),
-            ),
+        ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network('$pictures!', fit: BoxFit.cover))
+            .w(context.percentWidth * 40)
+            .h(context.percentHeight * 12),
         4.heightBox,
         name!.text.maxLines(2).size(8).base.align(TextAlign.center).make(),
         // VStack([
@@ -36,7 +32,7 @@ class GridProductWidget extends StatelessWidget {
         // ])
       ],
       crossAlignment: CrossAxisAlignment.center,
-    ).box.make().onTap(() {
+    ).box.make().px2().onTap(() {
       context.go(routeName.detailPath, extra: id);
     });
   }

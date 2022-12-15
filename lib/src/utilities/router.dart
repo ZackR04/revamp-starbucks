@@ -9,6 +9,8 @@ mixin routeName {
 //
   static const cart = 'cart';
   static const cartPath = '/home/cart';
+  static const pay = 'pay';
+  static const payPath = '/home/cart/pay';
 //
   static const detail = 'detail';
   static const detailPath = '/home/detail';
@@ -82,6 +84,17 @@ final GoRouter router = GoRouter(initialLocation: routeName.splash, routes: [
             BlocProvider.of<ListCartBloc>(context).add(FetchListCart());
             return const CartScreen();
           },
+          routes: [
+            GoRoute(
+              path: routeName.pay,
+              builder: (context, state) {
+                // String id = state.extra as String;
+                // BlocProvider.of<DetailOrderBloc>(context)
+                //     .add(FetchDetailOrder(docID: id));
+                return const PayScreen();
+              },
+            ),
+          ]
         ),
         GoRoute(
           path: routeName.admin,

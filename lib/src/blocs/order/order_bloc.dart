@@ -18,12 +18,13 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           dateTime: DateTime.now(),
           id: DateTime.now().millisecondsSinceEpoch.toString(),
           paymentStatus: 0,
-          productName: 'Belanja',
+          productName: 'Order',
           totalPrice: event.totalPrice,
           products: event.products);
 
       final result = await OrderService().orderProcess(orderModel);
-      emit(result.fold((l) => OrderIsFailed(l), (r) => OrderIsSuccess(r)));
+      emit(result.fold(
+          (l) => OrderIsFailed(l), (r) => OrderIsSuccess(r, orderModel.id!)));
     });
   }
 }

@@ -23,10 +23,12 @@ class HomeScreenSeller extends StatelessWidget {
               unselectedItemColor: colorName.grey,
               currentIndex: (state as BottomNavBarInitial).index,
               onTap: (value) {
-                BlocProvider.of<BottomNavBarCubit>(context).changeIndex(value);
-                // if (value == 3) {
-                //   BlocProvider.of<ListOrderBloc>(context).add(FetchListOrder());
-                // }
+                BlocProvider.of<BottomNavBarCubit>(context)
+                    .changeIndexSeller(value);
+                if (value == 2) {
+                  BlocProvider.of<ListOrderBloc>(context)
+                      .add(FetchListOrderbyAdmin());
+                }
               },
               items: [
                 BottomNavigationBarItem(
@@ -61,7 +63,8 @@ class HomeScreenSeller extends StatelessWidget {
         },
       ),
       body: PageView.builder(
-        controller: BlocProvider.of<BottomNavBarCubit>(context).pageController,
+        controller:
+            BlocProvider.of<BottomNavBarCubit>(context).pageSellerController,
         itemCount: pages.length,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {

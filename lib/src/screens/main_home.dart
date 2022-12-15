@@ -11,7 +11,7 @@ class _MainHomeState extends State<MainHome> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<UserBloc, UserState>(
-      bloc: BlocProvider.of<UserBloc>(context)..add(LoadUserData()),
+        bloc: BlocProvider.of<UserBloc>(context)..add(LoadUserData()),
         listener: (context, state) {
           if (state is UserIsFailed) {
             context.go(routeName.login);
@@ -20,19 +20,18 @@ class _MainHomeState extends State<MainHome> {
         builder: (context, state) {
           if (state is UserIsSuccess) {
             BlocProvider.of<ListProductBloc>(context).add(FetchListProduct());
+            BlocProvider.of<BottomNavBarCubit>(context).initIndex();
             if (state.data.admin!) {
-              return HomeScreenSeller();
+              return const HomeScreenSeller();
             } else {
-              return HomeScreen();
+              return const HomeScreen();
             }
           }
-          return Scaffold(
+          return const Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
             ),
           );
-        }
-    );
+        });
   }
 }
-

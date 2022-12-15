@@ -38,8 +38,8 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
       List _listKategori = <String>
       [
         "Coffee",
-        "Makanan",
         "Non-Coffee",
+        "Makanan",
         "Lain-lain",
       ];
 

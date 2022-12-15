@@ -37,9 +37,9 @@ class DashboardSellerView extends StatelessWidget {
           radius: 56,
           backgroundImage: (data.photoProfile!.isNotEmpty)
               ? DecorationImage(
-            image: NetworkImage(data.photoProfile!),
-            fit: BoxFit.cover,
-          )
+                  image: NetworkImage(data.photoProfile!),
+                  fit: BoxFit.cover,
+                )
               : null,
         ).onTap(() {
           context.go(routeName.adminPath);
@@ -68,7 +68,7 @@ class DashboardSellerView extends StatelessWidget {
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 3.5 / 4,
+              childAspectRatio: 2 / 2,
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
             ),

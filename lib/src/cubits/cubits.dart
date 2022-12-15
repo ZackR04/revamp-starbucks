@@ -5,3 +5,4 @@ export 'check_saved/check_saved_cubit.dart';
 export 'check_variant/check_variant_cubit.dart';
 export 'checkbox_cart/checkbox_cart_cubit.dart';
 export 'wishlist/wishlist_cubit.dart';
+export 'status_order/status_order_cubit.dart';

@@ -9,3 +9,4 @@ export 'list_wishlist/list_wishlist_bloc.dart';
 export 'list_cart/list_cart_bloc.dart';
 export 'list_order/list_order_bloc.dart';
 export 'order/order_bloc.dart';
+export 'detail_order/detail_order_bloc.dart';

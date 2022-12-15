@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'order_bloc.dart';
 
 @immutable
@@ -15,6 +16,10 @@ class OrderIsFailed extends OrderState {
 
 class OrderIsSuccess extends OrderState {
   final String message;
+  final String id;
 
-  OrderIsSuccess(this.message);
+  OrderIsSuccess(
+    this.message,
+    this.id,
+  );
 }

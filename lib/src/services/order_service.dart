@@ -17,6 +17,28 @@ class OrderService {
     }
   }
 
+  Future<Either<String, List<OrderModel>>> fetchListOrderbyAdmin() async {
+    try {
+      final querySnapshot = await ordersCollection.get();
+      final data =
+          querySnapshot.docs.map((e) => OrderModel.fromMap(e.data())).toList();
+      return right(data);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  Future<Either<String, String>> updatePaymentStatus(
+      String id, int status) async {
+    try {
+      final data = {'paymentStatus': status};
+      await ordersCollection.doc(id).update(data);
+      return right('Berhasil Melakukan Checkout');
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
   Future<Either<String, OrderModel>> fetchDetailOrder(String docId) async {
     try {
       final documentSnapshot = await ordersCollection.doc(docId).get();

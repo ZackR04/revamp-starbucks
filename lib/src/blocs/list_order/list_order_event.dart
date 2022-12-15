@@ -4,3 +4,5 @@ part of 'list_order_bloc.dart';
 abstract class ListOrderEvent {}
 
 class FetchListOrder extends ListOrderEvent {}
+
+class FetchListOrderbyAdmin extends ListOrderEvent {}

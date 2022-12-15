@@ -11,6 +11,7 @@ import 'package:starbucks/src/widgets/widgets.dart';
 import 'package:starbucks/src/utilities/utilities.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 //
 part 'splash_screen.dart';
@@ -22,6 +23,7 @@ part 'main_home.dart';
 part 'buyer/cart_screen.dart';
 part 'buyer/detailproduct_screen.dart';
 part 'buyer/voucher_screen.dart';
+part 'buyer/pay_screen.dart';
 //
 part 'buyer/home/home_screen.dart';
 part 'buyer/home/views/dashboard_view.dart';
