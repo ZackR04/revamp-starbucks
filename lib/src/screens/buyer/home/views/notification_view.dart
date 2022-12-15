@@ -23,14 +23,22 @@ class NotificationView extends StatelessWidget {
                     (listOrderState.model[index].paymentStatus! == 0
                             ? 'Belum Dibayar'
                             : listOrderState.model[index].paymentStatus! == 1
-                                ? 'Pesanan Diproses'
+                                ? 'Pembayaran Berhasil'
+                        : listOrderState.model[index].paymentStatus! == 2
+                        ? 'Pesanan Diproses'
+                        : listOrderState.model[index].paymentStatus! == 3
+                        ? 'Pesanan Ditolak'
                                 : 'Selesai')
                         .text
                         .color((listOrderState.model[index].paymentStatus! == 0
                             ? colorName.accentRed
                             : listOrderState.model[index].paymentStatus! == 1
                                 ? colorName.accentBlue
-                                : colorName.accentGreen))
+                        : listOrderState.model[index].paymentStatus! == 2
+                        ? colorName.primary
+                        : listOrderState.model[index].paymentStatus! == 3
+                        ? colorName.accentRed
+                                : colorName.primary))
                         .make()
                   ]),
                   const VxDivider(
