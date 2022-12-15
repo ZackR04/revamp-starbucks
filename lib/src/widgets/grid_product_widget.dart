@@ -24,7 +24,7 @@ class GridProductWidget extends StatelessWidget {
             .w(context.percentWidth * 40)
             .h(context.percentHeight * 12),
         4.heightBox,
-        name!.text.maxLines(2).size(8).base.align(TextAlign.center).make(),
+        name!.text.maxLines(2).size(14).bold.base.align(TextAlign.center).make(),
         // VStack([
         //   name!.text.size(16).bold.makeCentered(),
         //   4.heightBox,

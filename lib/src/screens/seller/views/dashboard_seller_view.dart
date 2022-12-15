@@ -96,7 +96,7 @@ class DashboardSellerView extends StatelessWidget {
           VStack([
             data.name!.text.size(16).bold.make(),
             4.heightBox,
-            Commons().setPriceToIDR(data.price!).text.size(12).make(),
+            Commons().setPriceToIDR(data.price!).text.size(14).make(),
           ]).p8()
         ],
       ).box.white.make(),

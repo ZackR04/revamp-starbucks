@@ -42,6 +42,20 @@ class ProductService {
     }
   }
 
+
+  Future<Either<String, String>> deleteProduct(String id) async {
+    try {
+      String uid = await Commons().getUID();
+      productCollection
+          .doc(uid)
+          .delete();
+
+      return right('Berhasil Menghapus Produk');
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
   Future<Either<String, String>> addToCart(ProductModel model) async {
     try {
       String uid = await Commons().getUID();

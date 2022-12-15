@@ -22,8 +22,9 @@ class OrderStatusView extends StatelessWidget {
                 return listOrderState.model[index].paymentStatus == 1 || listOrderState.model[index].paymentStatus == 2 ? VStack([
                   HStack([
                     listOrderState.model[index].productName!.text
-                        .make()
-                        .expand(),
+                        .make(),
+                    4.widthBox,
+                    listOrderState.model[index].id!.text.bold.size(16).make().expand(),
                     'Total: ${Commons().setPriceToIDR(listOrderState.model[index].totalPrice!)}'
                         .text
                         .bold

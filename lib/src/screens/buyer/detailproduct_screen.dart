@@ -9,7 +9,7 @@ class DetailProductScreen extends StatelessWidget {
       backgroundColor: colorName.primary,
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: colorName.white,
+        backgroundColor: colorName.secondary,
         iconTheme: const IconThemeData(color: colorName.black),
       ),
       bottomNavigationBar: BlocBuilder<DetailProductBloc, DetailProductState>(

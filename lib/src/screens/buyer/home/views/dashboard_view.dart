@@ -31,8 +31,8 @@ class DashboardView extends StatelessWidget {
                       // 12.heightBox,
                       _buildPromotion(context),
                       16.heightBox,
-                      _buildSpecialMenu(),
-                      16.heightBox,
+                      // _buildSpecialMenu(),
+                      // 16.heightBox,
                       _buildCoffee(),
                       16.heightBox,
                       _buildNonCoffee(),
@@ -145,7 +145,7 @@ class DashboardView extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(30),
               child: Image.network(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNDyL_G6WiRYjVtFPJPVeYcoh2cIYMD4cVbw&usqp=CAU',
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEVlm_nJRc8KojsD3i2JAdvDEX1cntvqGtZQ&usqp=CAU',
                 width: context.screenWidth,
                 fit: BoxFit.cover,
               ),
@@ -153,11 +153,19 @@ class DashboardView extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(30),
               child: Image.network(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp711ZqL7sx7k9g67rNfXYkOnUplalQ-XAVA&usqp=CAU',
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBwjH9wCQQuiT8bytRICoNSkfzV4fzQqtwsg&usqp=CAU',
                 width: context.screenWidth,
                 fit: BoxFit.cover,
               ),
             ).px12(),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: Image.network(
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl02aDN1q0rTAJw5fEvNIZ6MygSr6ncYSz9w&usqp=CAU',
+                    width: context.screenWidth,
+                    fit: BoxFit.cover,
+                  ),
+                ).px12(),
           ],
               options: CarouselOptions(
                   viewportFraction: 1,

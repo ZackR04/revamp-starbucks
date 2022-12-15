@@ -16,18 +16,24 @@ class _MenuViewState extends State<MenuView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorName.primary,
-      appBar: PreferredSize(
-        preferredSize: Size(context.screenWidth, context.percentHeight * 20),
-        child: _buildSearchBar(context),
+      appBar: AppBar(
+        backgroundColor: colorName.secondary,
+        title: 'Our Menu'.text.make(),
+        centerTitle: true,
       ),
-      body: VStack([
-        // _buildCategory(),
-        // _buildListMenu(),
-        _buildCoffee(),
-        _buildNonCoffee(),
-        _buildMakanan(),
-        _buildLainlain(),
-      ]).scrollVertical(),
+      // PreferredSize(
+      //   preferredSize: Size(context.screenWidth, context.percentHeight * 20),
+      //   child: _buildSearchBar(context),
+      body: SingleChildScrollView(
+        child: VStack([
+          // _buildCategory(),
+          // _buildListMenu(),
+          _buildCoffee(),
+          _buildNonCoffee(),
+          _buildMakanan(),
+          _buildLainlain(),
+        ]),
+      )
     );
   }
 

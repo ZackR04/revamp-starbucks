@@ -7,6 +7,11 @@ class WishlistView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorName.primary,
+      appBar: AppBar(
+        backgroundColor: colorName.secondary,
+        title: 'Wishlist'.text.make(),
+        centerTitle: true,
+    ),
       body: SafeArea(
         child: BlocBuilder<ListWishlistBloc, ListWishlistState>(
           builder: (context, state) {

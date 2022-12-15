@@ -25,6 +25,10 @@ class HomeScreen extends StatelessWidget {
               currentIndex: (state as BottomNavBarInitial).index,
               onTap: (value) {
                 BlocProvider.of<BottomNavBarCubit>(context).changeIndex(value);
+                if (value == 1) {
+                  BlocProvider.of<ListWishlistBloc>(context)
+                      .add(FetchListWishlist());
+                }
                 if (value == 3) {
                   BlocProvider.of<ListOrderBloc>(context).add(FetchListOrder());
                 }
@@ -47,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                 BottomNavigationBarItem(
                   icon: Image.asset(
                     'assets/icons/menu.png',
-                    scale: 14,
+                    scale: 18,
                   ),
                   label: 'Menu',
                 ),
