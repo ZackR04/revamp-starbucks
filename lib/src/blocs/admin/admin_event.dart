@@ -30,3 +30,9 @@ class ChangeCategory extends AdminEvent {
 
   ChangeCategory({this.value});
 }
+
+class AdminFetchProductByID extends AdminEvent {
+  final String idProduct;
+
+  AdminFetchProductByID({required this.idProduct});
+}

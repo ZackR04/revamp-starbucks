@@ -34,3 +34,16 @@ class AdminChangeCategory extends AdminState {
 
   AdminChangeCategory({this.selectedCategory});
 }
+
+class AdminFetchProductByIDfailed extends AdminState {
+  final String message;
+  AdminFetchProductByIDfailed({
+    required this.message,
+  });
+}
+
+class AdminFetchProductByIDSuceess extends AdminState {
+  final ProductModel data;
+
+  AdminFetchProductByIDSuceess({required this.data});
+}

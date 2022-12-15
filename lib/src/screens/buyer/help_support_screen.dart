@@ -13,7 +13,7 @@ class HelpSupportScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body:
-          'For More Information and Help please sent your quetion to support@thecoffee.id or topawijaya03@gmail.com, zakiahrezekislubis@gmail.com & vram3012@gmail.com'
+          'For More Information and Help please sent your question to support@thecoffee.id or topawijaya03@gmail.com, zakiahrezekislubis@gmail.com & vram3012@gmail.com'
               .text
               .center
               .bold

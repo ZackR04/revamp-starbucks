@@ -19,7 +19,7 @@ class OrderStatusView extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemCount: listOrderState.model.length,
               itemBuilder: (context, index) {
-                return VStack([
+                return listOrderState.model[index].paymentStatus == 1 || listOrderState.model[index].paymentStatus == 2 ? VStack([
                   HStack([
                     listOrderState.model[index].productName!.text
                         .make()
@@ -49,10 +49,12 @@ class OrderStatusView extends StatelessWidget {
                           ]).py4())
                       .toList()),
                   16.heightBox,
-                  ButtonWidget(
-                    onPressed: () {},
+                  listOrderState.model[index].paymentStatus == 1 ? ButtonWidget(
+                    onPressed: () {
+                      BlocProvider.of<StatusOrderCubit>(context).changeStatus("${listOrderState.model[index].id}", 2);
+                    },
                     text: 'Terima Pesanan',
-                  ).objectBottomRight(),
+                  ).objectBottomRight() : 0.heightBox,
                 ])
                     .p16()
                     .box
@@ -60,20 +62,7 @@ class OrderStatusView extends StatelessWidget {
                     .color(colorName.white)
                     .make()
                     .p16()
-                    .onTap(() {
-                  switch (listOrderState.model[index].paymentStatus!) {
-                    case 0:
-                      Commons().showSnackBar(context, 'Ke Halaman Pembayaran');
-                      break;
-                    case 1:
-                      Commons().showSnackBar(context, 'Ke Halaman Detail');
-                      break;
-                    case 2:
-                      Commons().showSnackBar(context, 'Ke Halaman Selesai');
-                      break;
-                    default:
-                  }
-                });
+                    : 0.heightBox;
               },
             );
           }

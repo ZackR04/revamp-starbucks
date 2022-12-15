@@ -69,9 +69,7 @@ class DashboardView extends StatelessWidget {
                   fit: BoxFit.cover,
                 )
               : null,
-        ).onTap(() {
-          context.go(routeName.adminPath);
-        }),
+        )
         //ICON Cart
       ],
     ).px20();

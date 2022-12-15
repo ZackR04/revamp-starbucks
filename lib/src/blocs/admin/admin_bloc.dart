@@ -49,5 +49,13 @@ class AdminBloc extends Bloc<AdminEvent, AdminState> {
 
     on<ChangeCategory>((event, emit) =>
         emit(AdminChangeCategory(selectedCategory: event.value)));
+
+    on<AdminFetchProductByID>((event, emit) async {
+      emit(AdminIsLoading());
+      final result = await ProductService().fetchDetailProduct(event.idProduct);
+      print('HALOO $result');
+      emit(result.fold((l) => AdminFetchProductByIDfailed(message: l),
+              (r) => AdminFetchProductByIDSuceess(data: r)));
+    });
   }
 }

@@ -34,4 +34,8 @@ class ProductPictureCubit extends Cubit<ProductPictureState> {
     listData.removeAt(id);
     emit(ProductPictureIsLoaded(files: listData));
   }
+
+  void deleteImageOnServer(int index) {
+    /// LAKUKAN DELETE DI SERVER BERDASARKAN ID LIST IMAGE PRODUCT
+  }
 }

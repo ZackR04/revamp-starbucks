@@ -150,9 +150,9 @@ final GoRouter router = GoRouter(initialLocation: routeName.splash, routes: [
         GoRoute(
           path: routeName.edit,
           builder: (context, state) {
-            // String id = state.extra as String;
-            // BlocProvider.of<DetailProductBloc>(context)
-            //     .add(FetchDetailProduct(docID: id));
+            String id = state.extra as String;
+            BlocProvider.of<AdminBloc>(context)
+                .add(AdminFetchProductByID(idProduct: id));
             return const EditProductScreen();
           },
         ),

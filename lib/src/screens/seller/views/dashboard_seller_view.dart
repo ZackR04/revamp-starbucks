@@ -41,9 +41,7 @@ class DashboardSellerView extends StatelessWidget {
                   fit: BoxFit.cover,
                 )
               : null,
-        ).onTap(() {
-          context.go(routeName.adminPath);
-        }),
+        ),
         16.widthBox,
         data.username!.text.size(20).bold.make(),
       ]),
@@ -102,8 +100,11 @@ class DashboardSellerView extends StatelessWidget {
           ]).p8()
         ],
       ).box.white.make(),
-    ).onTap(() {
-      context.go(routeName.editPath, extra: data.id);
-    });
+    );
+    //     .onTap(() {
+    //   context.go(routeName.editPath, extra: data.id);
+    // }
+    // )
+
   }
 }

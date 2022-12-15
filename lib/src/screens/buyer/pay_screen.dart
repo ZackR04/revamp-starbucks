@@ -64,8 +64,7 @@ class PayScreen extends StatelessWidget {
                 textSize: 16,
                 // isLoading: (state is OrderIsLoading) ? true : false,
                 onPressed: () {
-                  // BlocProvider.of<OrderBloc>(context)
-                  //     .add(OrderRequest(cartTotalPrice(), (state).data));
+                  BlocProvider.of<StatusOrderCubit>(context).changeStatus("${state.model.id}", 1);
                 },
               )
                   .w(context.screenWidth)
