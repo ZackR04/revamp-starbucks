@@ -12,7 +12,14 @@ class AboutScreen extends StatelessWidget {
         title: 'About Us'.text.make(),
         centerTitle: true,
       ),
-      body: 'About Us'.text.makeCentered(),
+      body:
+          'The Coffe adalah aplikasi gratis yang khusus dibuat untuk membantu pengusaha warung kopi yang belum memiliki sistem pemesanan kopi secara digital, dengan aplikasi the coffe diharapkan memudahkan para pelaku bisnis warung kopi dalam menerima orderan dan lebih menghemat budget karena semua pemesanan dapat dilakukan dengan paperless.'
+              .text
+              .xl
+              .semiBold
+              .justify
+              .makeCentered()
+              .p16(),
     );
   }
 }

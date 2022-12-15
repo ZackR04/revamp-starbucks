@@ -12,7 +12,14 @@ class HelpSupportScreen extends StatelessWidget {
         title: 'Help & Support'.text.make(),
         centerTitle: true,
       ),
-      body: 'Help & Support'.text.makeCentered(),
+      body:
+          'For More Information and Help please sent your quetion to support@thecoffee.id or topawijaya03@gmail.com, zakiahrezekislubis@gmail.com & vram3012@gmail.com'
+              .text
+              .center
+              .bold
+              .xl
+              .makeCentered()
+              .p16(),
     );
   }
 }
