@@ -24,6 +24,8 @@ part 'buyer/cart_screen.dart';
 part 'buyer/detailproduct_screen.dart';
 part 'buyer/voucher_screen.dart';
 part 'buyer/pay_screen.dart';
+part 'buyer/help_support_screen.dart';
+part 'buyer/about_screen.dart';
 //
 part 'buyer/home/home_screen.dart';
 part 'buyer/home/views/dashboard_view.dart';

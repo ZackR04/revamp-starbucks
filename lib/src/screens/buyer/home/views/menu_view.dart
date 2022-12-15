@@ -21,7 +21,7 @@ class _MenuViewState extends State<MenuView> {
         child: _buildSearchBar(context),
       ),
       body: VStack([
-        _buildCategory(),
+        // _buildCategory(),
         // _buildListMenu(),
         _buildCoffee(),
         _buildNonCoffee(),

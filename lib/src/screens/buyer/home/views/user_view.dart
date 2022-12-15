@@ -5,22 +5,13 @@ class UserView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/bg 7.jpg'),
-          fit: BoxFit.cover,
-          // colorFilter:
-          //     ColorFilter.mode(Colors.amber.withOpacity(0.15), BlendMode.color),
-        ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
+    return Scaffold(
+        backgroundColor: colorName.primary,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: colorName.secondary,
           title: const Text(
-            'Settings',
-            style: TextStyle(color: Colors.black, fontSize: 20),
+            'Profile',
+            style: TextStyle(fontSize: 20),
           ),
           centerTitle: true,
         ),
@@ -65,6 +56,7 @@ class UserView extends StatelessWidget {
                       ],
                       crossAlignment: CrossAxisAlignment.center,
                     ),
+                    12.heightBox,
                     _buildUserSettings(context),
                     // ElevatedButton(
                     //     onPressed: () {
@@ -79,35 +71,34 @@ class UserView extends StatelessWidget {
             },
           ).scrollVertical(),
         ),
-      ),
-    );
+      );
   }
 
   Widget _buildUserSettings(BuildContext context) {
     return Column(children: [
-      Padding(
-        padding: const EdgeInsets.only(right: 160),
-        child: TextButton.icon(
-          style: TextButton.styleFrom(
-            // textStyle: const TextStyle(color: Colors.white),
-            backgroundColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24.0),
-            ),
-          ),
-          onPressed: () {},
-          icon: const Icon(
-            Icons.account_circle_outlined,
-            size: 50,
-            color: Colors.black,
-          ),
-          label: const Text(
-            'Account Settings',
-            style: TextStyle(color: Colors.black, fontSize: 20),
-          ),
-        ),
-      ),
-      13.heightBox,
+      // Padding(
+      //   padding: const EdgeInsets.only(right: 160),
+      //   child: TextButton.icon(
+      //     style: TextButton.styleFrom(
+      //       // textStyle: const TextStyle(color: Colors.white),
+      //       backgroundColor: Colors.transparent,
+      //       shape: RoundedRectangleBorder(
+      //         borderRadius: BorderRadius.circular(24.0),
+      //       ),
+      //     ),
+      //     onPressed: () {},
+      //     icon: const Icon(
+      //       Icons.account_circle_outlined,
+      //       size: 50,
+      //       color: Colors.black,
+      //     ),
+      //     label: const Text(
+      //       'Account Settings',
+      //       style: TextStyle(color: Colors.black, fontSize: 20),
+      //     ),
+      //   ),
+      // ),
+      // 13.heightBox,
       Padding(
         padding: const EdgeInsets.only(right: 190, left: 10),
         child: TextButton.icon(
@@ -118,7 +109,9 @@ class UserView extends StatelessWidget {
               borderRadius: BorderRadius.circular(24.0),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            context.go(routeName.helpPath);
+          },
           icon: const Icon(
             Icons.help_center_outlined,
             size: 50,
@@ -141,7 +134,9 @@ class UserView extends StatelessWidget {
               borderRadius: BorderRadius.circular(24.0),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            context.go(routeName.aboutPath);
+          },
           icon: const Icon(
             Icons.info_outline_rounded,
             size: 50,

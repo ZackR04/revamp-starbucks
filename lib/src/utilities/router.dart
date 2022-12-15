@@ -24,7 +24,6 @@ mixin routeName {
   static const menu = 'menu';
   static const menuPath = '/home/menu';
 
-
 //
   static const homeAdmin = '/homeAdmin';
 //
@@ -33,6 +32,20 @@ mixin routeName {
 //
   static const edit = 'edit';
   static const editPath = '/homeAdmin/edit';
+//
+  static const setting = 'setting';
+  static const settingPath = '/home/setting';
+  static const help = 'help';
+  static const helpPath = '/home/setting/help';
+  static const about = 'about';
+  static const aboutPath = '/home/setting/about';
+//
+  static const settingSeller = 'setting-seller';
+  static const settingSellerPath = '/homeAdmin/setting-seller';
+  static const helpSeller = 'help-seller';
+  static const helpSellerPath = '/homeAdmin/setting-seller/help-seller';
+  static const aboutSeller = 'about-seller';
+  static const aboutSellerPath = '/homeAdmin/setting-seller/about-seller';
 }
 
 final GoRouter router = GoRouter(initialLocation: routeName.splash, routes: [
@@ -97,10 +110,24 @@ final GoRouter router = GoRouter(initialLocation: routeName.splash, routes: [
           ]
         ),
         GoRoute(
-          path: routeName.admin,
+          path: routeName.setting,
           builder: (context, state) {
-            return const AdminScreen();
+            return const UserView();
           },
+          routes: [
+            GoRoute(
+                path: routeName.help,
+                builder: (context, state) {
+                  return const HelpSupportScreen();
+                },
+            ),
+            GoRoute(
+              path: routeName.about,
+              builder: (context, state) {
+                return const AboutScreen();
+              },
+            ),
+          ]
         ),
         GoRoute(
           path: routeName.detail,
@@ -128,6 +155,26 @@ final GoRouter router = GoRouter(initialLocation: routeName.splash, routes: [
             //     .add(FetchDetailProduct(docID: id));
             return const EditProductScreen();
           },
+        ),
+        GoRoute(
+            path: routeName.settingSeller,
+            builder: (context, state) {
+              return const UserSetting();
+            },
+            routes: [
+              GoRoute(
+                path: routeName.helpSeller,
+                builder: (context, state) {
+                  return const HelpSupportScreen();
+                },
+              ),
+              GoRoute(
+                path: routeName.aboutSeller,
+                builder: (context, state) {
+                  return const AboutScreen();
+                },
+              ),
+            ]
         ),
       ]
   ),
