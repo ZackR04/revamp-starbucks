@@ -2,6 +2,7 @@ part of '../screens.dart';
 
 class DetailProductScreen extends StatelessWidget {
   const DetailProductScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +54,7 @@ class DetailProductScreen extends StatelessWidget {
           if (state is DetailProductIsSuccess) {
             return VStack([
               _buildListImage(state),
-              50.heightBox,
-              _buildProductDetails(state, context),
+              _buildProductDetails(state),
             ]).scrollVertical();
           }
           return Container();
@@ -63,15 +63,13 @@ class DetailProductScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildProductDetails(
-      DetailProductIsSuccess state, BuildContext context) {
+  Widget _buildProductDetails(DetailProductIsSuccess state) {
     return VStack([
       HStack([
         VStack([
           state.data.name!.text.size(20).semiBold.make(),
           8.heightBox,
           Commons().setPriceToIDR(state.data.price!).text.size(16).make(),
-          8.heightBox,
         ]).expand(),
         BlocListener<WishlistCubit, WishlistState>(
           listener: (context, wishlistState) {
@@ -105,175 +103,42 @@ class DetailProductScreen extends StatelessWidget {
           ),
         )
       ]),
-      ElevatedButton(
-          onPressed: () {
-            showModalBottomSheet(
-                context: context,
-                builder: (context) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: colorName.primary,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(25),
-                          topRight: Radius.circular(25),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Column(
-                          children: [
-                            HStack(
-                              [
-                                state.data.name!.text
-                                    .size(20)
-                                    .center
-                                    .semiBold
-                                    .make(),
-                              ],
-                            ),
-                            VStack([
-                              state.data.desc!.text
-                                  .size(14)
-                                  .color(colorName.grey)
-                                  .center
-                                  .make(),
-                            ]).py16(),
-                            16.heightBox,
-                            Column(
-                              children: const [
-                                Text(
-                                  'Beverage size',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            10.heightBox,
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      Image.network(
-                                        'https://e7.pngegg.com/pngimages/951/898/png-clipart-disposable-drinking-cup-illustration-iced-coffee-cafe-coffee-cup-starbucks-free-starbucks-angle-furniture.png',
-                                        height: 50,
-                                      ),
-                                      const Text(
-                                        'TALL',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      Image.network(
-                                        'https://e7.pngegg.com/pngimages/951/898/png-clipart-disposable-drinking-cup-illustration-iced-coffee-cafe-coffee-cup-starbucks-free-starbucks-angle-furniture.png',
-                                        height: 60,
-                                      ),
-                                      const Text(
-                                        'GRANDE',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      Image.network(
-                                        'https://e7.pngegg.com/pngimages/951/898/png-clipart-disposable-drinking-cup-illustration-iced-coffee-cafe-coffee-cup-starbucks-free-starbucks-angle-furniture.png',
-                                        height: 70,
-                                      ),
-                                      const Text(
-                                        'VENTI',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            30.heightBox,
-                            Column(
-                              children: const [
-                                Text(
-                                  'Variant Product',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            8.heightBox,
-                            BlocBuilder<CheckVariantCubit, CheckVariantState>(
-                              builder: (context, variantState) {
-                                return HStack(state.data.variant!
-                                    .map((e) => VxBox(
-                                                child: e.text
-                                                    .color((variantState
-                                                                as CheckVariantIsSelected)
-                                                            .selectedVariant
-                                                            .contains(e)
-                                                        ? colorName.white
-                                                        : colorName.black)
-                                                    .make())
-                                            .color(variantState.selectedVariant
-                                                    .contains(e)
-                                                ? colorName.secondary
-                                                : colorName.white)
-                                            .border(
-                                                color: variantState
-                                                        .selectedVariant
-                                                        .contains(e)
-                                                    ? colorName.white
-                                                    : colorName.grey)
-                                            .p16
-                                            .rounded
-                                            .make()
-                                            .onTap(() {
-                                          BlocProvider.of<CheckVariantCubit>(
-                                                  context)
-                                              .selectItem(e);
-                                        }).pOnly(right: 4))
-                                    .toList());
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                });
+      VStack([
+        'Deskripsi'.text.size(16).bold.make(),
+        4.heightBox,
+        state.data.desc!.text.size(14).color(colorName.grey).make(),
+      ]).py16(),
+      VStack([
+        'Variant Produk'.text.bold.make(),
+        8.heightBox,
+        BlocBuilder<CheckVariantCubit, CheckVariantState>(
+          builder: (context, variantState) {
+            return HStack(state.data.variant!
+                .map((e) => VxBox(
+                            child: e.text
+                                .color((variantState as CheckVariantIsSelected)
+                                        .selectedVariant
+                                        .contains(e)
+                                    ? colorName.white
+                                    : colorName.black)
+                                .make())
+                        .color(variantState.selectedVariant.contains(e)
+                            ? colorName.secondary
+                            : colorName.white)
+                        .border(
+                            color: variantState.selectedVariant.contains(e)
+                                ? colorName.white
+                                : colorName.grey)
+                        .p16
+                        .rounded
+                        .make()
+                        .onTap(() {
+                      BlocProvider.of<CheckVariantCubit>(context).selectItem(e);
+                    }).pOnly(right: 4))
+                .toList());
           },
-          child: Center(
-            child: Column(
-              children: const [
-                Text(
-                  'Customize',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            // child: Text(
-            //   'Customize',
-            //   style: TextStyle(
-            //     fontSize: 16,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-          ))
+        )
+      ])
     ]).p16();
   }
 
@@ -281,10 +146,10 @@ class DetailProductScreen extends StatelessWidget {
     return VxSwiper.builder(
       itemCount: state.data.pictures!.length,
       autoPlay: true,
-      aspectRatio: 16 / 16,
+      aspectRatio: 16 / 14,
       itemBuilder: (context, index) {
         return AspectRatio(
-          aspectRatio: 16 / 16,
+          aspectRatio: 16 / 14,
           child: Image.network(
             state.data.pictures![index],
             fit: BoxFit.cover,
