@@ -110,21 +110,21 @@ class _LoginScreenState extends State<LoginScreen>
                     child: Container(
                       margin: const EdgeInsets.all(10),
                       child: Image.asset(
-                        'assets/images/starbucks hijau.png',
-                        height: 160,
-                        width: 160,
+                        'assets/images/bg logo.png',
+                        height: 140,
+                        width: 140,
                       ),
                     ),
                   ),
-                  AnimatedPositioned(
-                    duration: defaultDuration,
-                    width: _size.width,
-                    bottom: _size.height * 0.1,
-                    right: _isShowSignUp
-                        ? -_size.width * 0.06
-                        : _size.width * 0.06,
-                    child: _buildSocialLogin(),
-                  ),
+                  // AnimatedPositioned(
+                  //   duration: defaultDuration,
+                  //   width: _size.width,
+                  //   bottom: _size.height * 0.1,
+                  //   right: _isShowSignUp
+                  //       ? -_size.width * 0.06
+                  //       : _size.width * 0.06,
+                  //   child: _buildSocialLogin(),
+                  // ),
 
                   // Login Text
                   AnimatedPositioned(
@@ -224,8 +224,9 @@ class _LoginScreenState extends State<LoginScreen>
         13.widthBox,
         IconButton(
             onPressed: () {}, icon: Image.asset('assets/images/apple.png')),
-        // 13.widthBox,
-        // IconButton(onPressed: () {}, icon: Image.asset('assets/images/linkedin.png')),
+        13.widthBox,
+        IconButton(
+            onPressed: () {}, icon: Image.asset('assets/images/linkedin.png')),
       ],
     );
   }
